@@ -2,38 +2,39 @@
 
 ## Reminder: How to Follow This Content
 
-  * Start by reading the lesson's **learning objective** in the `Learning Overview` section. Each weekly assignment will measure your skill related to the learning objective.
-  * Lessons are split into **subsections**, labeled like this: `1.1`, `1,2`, etc.
-  * Each subsection has a short **supplemental video** that will help you understand the content in that subsection.
-  * At the end of each subsection, you'll find a multiple-choice **"Check for Understanding"** question. Complete the question and review the material if your answer is not correct!
-  * After reading through the lesson content and correctly answering the "Check for Understanding" questions, complete the **Weekly Assignment**.
+* Start by reading the lesson's **learning objective** in the `Learning Overview` section. Each weekly assignment will measure your skill related to the learning objective.
+* Lessons are split into **subsections**, labeled like this: `1.1`, `1,2`, etc.
+* Each subsection has a short **supplemental video** that will help you understand the content in that subsection.
+* At the end of each subsection, you'll find a multiple-choice **"Check for Understanding"** question. Complete the question and review the material if your answer is not correct!
+* After reading through the lesson content and correctly answering the "Check for Understanding" questions, complete the **Weekly Assignment**.
 
 If you have questions at any point, ask a question in the `discussion` Slack channel or reach out to your mentor!
 
-## Lesson Overivew
+## Lesson Overview
 
 Congrats, you've made it to Lesson 2! This week, we'll deepen our knowledge of core Python concepts, including dictionaries and lists. We'll also learn how to import **modules**, powerful tools that help your Python projects reach their full potential.
 
 **Learning objective**: Students will explore various data structures, such as lists, tuples, dictionaries, and sets. They will learn how to read and write data to files and use external modules.
 
-Topics: 
- - Lists, Tuples, Dictionaries, and Sets: Creating, accessing, and modifying data structures.
- - File Handling: Reading from and writing to text and CSV files.
- - Introduction to Modules: Importing and using Python libraries.
- - Keyboard Input
+Topics:
+
+* Lists, Tuples, Dictionaries, and Sets: Creating, accessing, and modifying data structures.
+* File Handling: Reading from and writing to text and CSV files.
+* Introduction to Modules: Importing and using Python libraries.
+* Keyboard Input
 
 ## 2.1 Lists, Tuples, Dictionaries, and Sets
 
-Before we talk about lists and tuples, we need to define two new words: "mutable" and "immutable." 
+Before we talk about lists and tuples, we need to define two new words: "mutable" and "immutable."
 
-Something that is **mutable** can be modified or changed after it is created. Something that is **immutable** cannot be modified or changed after it is created. 
+Something that is **mutable** can be modified or changed after it is created. Something that is **immutable** cannot be modified or changed after it is created.
 
 Imagine a piece of clay (mutable) versus a ceramic statue (immutable):
 
-  * Clay can be reshaped, squished, or molded into different forms after it's first created. You can add or remove parts easily.
-  * A ceramic statue, once it's fired in a kiln, cannot be changed without breaking it completely.
+* Clay can be reshaped, squished, or molded into different forms after it's first created. You can add or remove parts easily.
+* A ceramic statue, once it's fired in a kiln, cannot be changed without breaking it completely.
 
-In Python programming, here's a concrete example using *mutable* lists and *immutable* tuples: 
+In Python programming, here's a concrete example using *mutable* lists and *immutable* tuples:
 
 ``` python
 # Mutable example (list)
@@ -47,6 +48,7 @@ colors = ('red', 'green', 'blue')
 # colors[0] = 'yellow'  # This would cause an error
 # You cannot change the tuple after creation
 ```
+
 ### Lists
 
 A **list** is a *mutable*, ordered collection of items. Lists allow duplicates and can hold items of different types, although typically you’ll find lists containing items of the same type. You can add, remove, or modify elements in a list, making them versatile for storing data that may change.
@@ -57,10 +59,11 @@ fruits.append('orange')  # Add an item
 print(fruits)  # Output: ['apple', 'banana', 'cherry', 'orange']
 ```
 
-#### Key List Methods:
-  * `append(item)`: Adds `item` to the end of the list.
-  * `remove(item)`: Removes the first occurrence of `item`.
-  * `sort()`: Sorts the list in place.
+#### Key List Methods
+
+* `append(item)`: Adds `item` to the end of the list.
+* `remove(item)`: Removes the first occurrence of `item`.
+* `sort()`: Sorts the list in place.
 
 ### Tuples
 
@@ -72,6 +75,7 @@ print(dimensions[0])  # Access the first element: Output: 1920
 ```
 
 #### Why use tuples?
+
 * Tuples are memory-efficient compared to lists.
 * Useful when you want a constant, fixed-size collection of data.
 
@@ -84,10 +88,12 @@ person = {'name': 'Jazmine', 'age': 30}  # Define a dictionary
 print(person['name'])  # Output: Jazmine
 person['email'] = 'jazmine@example.com'  # Add a new key-value pair
 ```
-#### Key Dictionary Methods:
- * `keys()`: Returns a list of keys in the dictionary.
- * `values()`: Returns a list of values.
- * `get(key)`: Returns the value associated with `key`, or `None` if `key` is not found.
+
+#### Key Dictionary Methods
+
+* `keys()`: Returns a list of keys in the dictionary.
+* `values()`: Returns a list of values.
+* `get(key)`: Returns the value associated with `key`, or `None` if `key` is not found.
 
 ### Sets
 
@@ -99,14 +105,15 @@ unique_numbers.add(5)  # Add a new item
 print(unique_numbers)  # Output: {1, 2, 3, 4, 5}
 ```
 
-#### Common Set Operations: 
-  * `union()`: Returns a set containing all unique elements from both sets.
-  * `intersection()`: Returns elements common to both sets.
-  * `difference()`: Returns elements present in one set but not the other.
+#### Common Set Operations
+
+* `union()`: Returns a set containing all unique elements from both sets.
+* `intersection()`: Returns elements common to both sets.
+* `difference()`: Returns elements present in one set but not the other.
 
 ### Review Table: Lists, Tuples, Dictionaries, and Sets
 
-Ok, let's review! Here's a table demonstrating the key differences between the four new terms we just learned: 
+Ok, let's review! Here's a table demonstrating the key differences between the four new terms we just learned:
 
 | Data Structure | Ordered | Changeable (Mutable) | Allows Duplicates | Key-Value Pairs |
 |----------------|---------|----------------------|-------------------|-----------------|
@@ -125,10 +132,10 @@ Ok, let's review! Here's a table demonstrating the key differences between the f
 
 **Question**: Which of the following statements about Python data structures is correct?
 
-  * A) Lists are immutable, and tuples are mutable.
-  * B) Sets allow duplicate elements.
-  * C) Dictionaries store data in key-value pairs and do not allow duplicate keys.
-  * D) Tuples are ordered and changeable.
+* A) Lists are immutable, and tuples are mutable.
+* B) Sets allow duplicate elements.
+* C) Dictionaries store data in key-value pairs and do not allow duplicate keys.
+* D) Tuples are ordered and changeable.
 
 <details>
 
@@ -162,8 +169,9 @@ with open('example.txt', 'w') as file:
 ```
 
 #### Additional Modes
-  * `"r+"`: Read and write
-  * `"a"`: Append to the file (keeps existing content).
+
+* `"r+"`: Read and write
+* `"a"`: Append to the file (keeps existing content).
 
 ### Reading and Writing CSV Files
 
@@ -184,7 +192,7 @@ with open('example.csv', 'r') as file:
 
 #### Writing to a CSV File
 
-To write to a CSV file, use `csv.writer(). Each row should be a list or tuple representing a row in the CSV.
+To write to a CSV file, use `csv.writer()`. Each row should be a list or tuple representing a row in the CSV.
 
 ```python
 import csv
@@ -195,12 +203,13 @@ with open('example.csv', 'w', newline='') as file:
     writer.writerow(['Jazmine', 30, 'New York'])  # Write a data row
 ```
 
-#### Additional Options:
-  * `csv.DictReader()` and `csv.DictWriter()`: Use dictionaries to work with row data, which can make reading and writing more convenient when you have headers.
+#### Additional Options
 
-### 2.2 Video: Reading and Writing a CSV File.
+* `csv.DictReader()` and `csv.DictWriter()`: Use dictionaries to work with row data, which can make reading and writing more convenient when you have headers.
 
-In this video, we'll demonstrate reading and writing to a real CSV file. After the video, practice reading and writing to a CSV file using the W3 Schools tutorial [here](https://www.w3resource.com/python-exercises/csv/index.php).
+### 2.2 Video: Reading and Writing a CSV File
+
+In this video, we'll demonstrate reading and writing to a real CSV file. After the video, practice reading and writing to a CSV file using the W3 Resource tutorial [here](https://www.w3resource.com/python-exercises/csv/index.php).
 
 **View the video here:** [LINK TBD]
 
@@ -208,10 +217,10 @@ In this video, we'll demonstrate reading and writing to a real CSV file. After t
 
 **Question**: What does the `"w"` mode do when opening a file in Python?
 
-  * A) Reads the file without making changes.
-  * B) Appends new data to the end of the file.
-  * C) Overwrites the file with new data, creating it if it doesn’t exist.
-  * D) Opens the file for reading and writing without overwriting.
+* A) Reads the file without making changes.
+* B) Appends new data to the end of the file.
+* C) Overwrites the file with new data, creating it if it doesn’t exist.
+* D) Opens the file for reading and writing without overwriting.
 
 <details>
 
@@ -271,21 +280,21 @@ df = pd.DataFrame({'Name': ['Jazmine', 'Luis'], 'Age': [30, 35]})
 
 Python’s **standard library** is packed with built-in modules for handling everything from file I/O and math operations to data serialization and date/time management. For example:
 
-  * `datetime` for working with dates and times.
-  * `json` for handling JSON data.
-  * `os` for interacting with the operating system.
+* `datetime` for working with dates and times.
+* `json` for handling JSON data.
+* `os` for interacting with the operating system.
 
 You can install and use **external libraries** with the `pip` package manager. External libraries are modules that add more functionality not included in the standard library, such as `requests` for HTTP requests or `numpy` for numerical operations.
 
 #### Installing and Importing Extrenal Libraries
 
-To install a library, use: 
+To install a library, use:
 
 ```bash
 pip install requests
 ```
 
-Then, import and use it like any other module: 
+Then, import and use it like any other module:
 
 ```python
 import requests
@@ -322,10 +331,10 @@ Modules and libraries in Python offer flexibility and organization, making your 
 
 **Question**: Which of the following commands correctly imports only the sqrt function from the `math` module?
 
-  * A) `import sqrt from math`
-  * B) `from math import sqrt`
-  * C) `import math.sqrt`
-  * D) `import math as sqrt`
+* A) `import sqrt from math`
+* B) `from math import sqrt`
+* C) `import math.sqrt`
+* D) `import math as sqrt`
 
 <details>
 
@@ -405,10 +414,10 @@ except ZeroDivisionError:
 
 **Question**: Which of the following statements about `input()` in Python is correct?
 
-  * A) `input()` captures user input and automatically converts it to an integer.
-  * B) `input()` displays a prompt and captures user input as a string by default.
-  * C) `input()` captures user input but only works with numbers.
-  * D) `input()` is used to output text to the console.
+* A) `input()` captures user input and automatically converts it to an integer.
+* B) `input()` displays a prompt and captures user input as a string by default.
+* C) `input()` captures user input but only works with numbers.
+* D) `input()` is used to output text to the console.
 
 <details>
 
