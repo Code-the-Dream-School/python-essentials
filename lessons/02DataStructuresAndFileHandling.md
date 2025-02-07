@@ -51,6 +51,11 @@ colors = ('red', 'green', 'blue')
 # colors[0] = 'yellow'  # This would cause an error
 # You cannot change the tuple after creation
 ```
+Strings are also immutable in Python.  This would cause an error:
+```
+capital = "raleigh"
+raleigh[0] = "R"
+```
 
 ### Lists
 
@@ -67,6 +72,38 @@ print(fruits)  # Output: ['apple', 'banana', 'cherry', 'orange']
 * `append(item)`: Adds `item` to the end of the list.
 * `remove(item)`: Removes the first occurrence of `item`.
 * `sort()`: Sorts the list in place.
+
+A list is an example of an iterable.  So you can iterate on it, as follows:
+
+```python
+fruits = ['apple', 'banana', 'cherry']
+for fruit in fruits:
+    print(fruit)
+```
+There are various other iterable collections in Python, such as tuples.
+
+#### The map() Function for Lists.
+
+The map() function is not a method of the list class.  It is a Python built in function that operates on iterables. Suppose you have a list of numbers, and you want to increment all of them.  You can do it as follows:
+
+```python
+list_one = [3,4,5]
+def incrementor(x):
+    return x + 1
+
+list_two = list(map(incrementor, list_one)) # [4,5,6]
+```
+
+You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversion to create a list.  Now, the incrementor() function above looks a little stupid.  You'd like to pass something in line, and for that, Python provides:
+
+### Lambdas
+
+```python
+list_one = [3,4,5]
+list_two = list(map(lambda x: x+1, list_one)) # [4,5,6]
+```
+
+The lambda feature is a way to declare a simple function.  Lambdas are, in some respects, similar to arrow functions in JavaScript, but they are much more limited.  A lambda is a simple one liner.
 
 ### Tuples
 
@@ -161,6 +198,22 @@ with open('example.txt', 'r') as file:
     content = file.read()  # Read entire file
     print(content)
 ```
+
+The python above uses the `with` statement.  This is a way to keep your code looking clean.  You always want to close the file when you are done.  The `with` statement closes it for you on exit from the block.  The file is closed even if there is an exception, but the exception is still passed on to you.  Later in the course, you will also use the `with` statement for a database connection, and it serves the same purpose.
+
+File operations, including the open(), can raise exceptions.  To make your code robust, you put them in a try block, as follows:
+
+```python
+try:
+    with open('example.txt', 'r') as file:
+        content = file.read()  # Read entire file
+        print(content)
+except Error as e:
+    print(f"An error occurred reading the file: {e}")
+else:
+    print("The file was read ok.")
+```
+If your `with` block is longer, you may have other try blocks inside it for more granular exception handling.
 
 #### Writing to a Text File
 
@@ -283,7 +336,7 @@ print(math_tools.add(2, 3))  # Output: 5
 
 ### Packages
 
-A package is a collection of related modules organized in a directory structure. Packages require an `__init__.py` file to mark the directory as a Python package.
+A package is a collection of related modules organized in a directory structure. Packages require an `__init__.py` file to mark the directory as a Python package.  In this course, we don't create large projects with many modules, but as a Python professional, you will need to do this.  The contents of `__init__.py` are not described in this lesson, but you can view [this tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) to see how it is to be done (this is optional for this course).
 
 #### Package Structure Example
 ```
@@ -539,6 +592,20 @@ path_variable = os.environ.get('PATH')
 print(path_variable)
 ```
 
+**Addendum: The sys Package**
+
+In many environments, Python is used as a scripting tool.  Python scripts are invoked with arguments.  The user might type:
+
+```bash
+python loadfile.py ./current.csv
+```
+and the script might load the contents of the file into a database.  The sys package enables this (among other things).  Consider the following code:
+
+```python
+import sys
+for arg in sys.argv:
+    print(arg)  # arg[0] is the program name.  The other arguments are what was passed on the command line.
+
 ### Video 2.5: Working with `os`
 
 **[Watch an overview of working with the `os` module here](https://youtu.be/tJxcKyFMTGo?feature=shared).**
@@ -575,7 +642,7 @@ Virtual environments are a cornerstone of Python development, particularly when 
      python3 -m venv myenv
      ```
 
-     This command creates a directory named `myenv` that contains the virtual environment.
+     This command creates a directory named `myenv` that contains the virtual environment.  (Note: by convention, `.venv` is usually used as the name of the virtual environment, instead of `myenv` as in this example.)
 
    - **Using `virtualenv`**:
 
@@ -590,10 +657,13 @@ Virtual environments are a cornerstone of Python development, particularly when 
    To activate the virtual environment, use the following commands:
 
    * **Windows:**
+     The following command assumes that you are using Git Bash as your Windows development terminal environment.  This is strongly recommended.
 
      ```bash
-     myenv\Scripts\activate
+     source myenv/Scripts/activate
      ```
+
+
 
    * **Mac/Linux:**
 
@@ -641,7 +711,7 @@ Virtual environments are a cornerstone of Python development, particularly when 
 
 ### Video 2.6: The Virtual Environment
 
-Check out Video 2.6 for a quick overview of setting up a virtual environment for Python in VS Code.
+Check out Video 2.6 for a quick overview of setting up a virtual environment for Python in VS Code.  Note that you have already done this!  Your python_homework directory uses a virtual environment.
 
 **[Watch the video here](https://youtu.be/GZbeL5AcTgw?feature=shared).**
 

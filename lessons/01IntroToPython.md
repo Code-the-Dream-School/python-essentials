@@ -34,13 +34,6 @@ Topics:
 
 ## 1.1 Setting up uour environment 
 
-**Start by creating a .py file somewhere convenient on your local machine.** 
-
-You can create this file manually or through an IDE like Visual Studio Code. **To set up VS Code, Download and install it from [here](https://code.visualstudio.com/).**
-
-Alternatively, you can use a **Jupyter Notebook** (with the .ipynb extension) or any notebook platform, such as Google Colab, to keep your classwork organized.
-* **If you're new to Jupyter Notebooks, [here's a resource on how to get started with Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)].**
-* **[Google Colab](https://colab.research.google.com/)** can also be used for running Jupyter Notebooks in the cloud.
 
 ### Install Python
 
@@ -49,34 +42,38 @@ You can download Python from the official website: [python.org](https://www.pyth
 Follow the installation instructions for your operating system:
 
 1. **Install Python:**
-   - Follow the installation instructions for your operating system. **Note: If you are using Windows, it is common to use the Windows Subsystem for Linux for development. WSL is not recommended for this class.** Later lessons use `matplotlib for graphs`. It is difficult to do the configuration needed to get graphs to show in the WSL environment. Windows users should install in Windows native.
-   - Make sure to check the option to **Add Python to PATH** during installation.
+   Follow the installation instructions for your operating system.
 
-2. **For macOS**:
-   - macOS typically comes with Python pre-installed. To ensure you are using Python 3, download the latest version of Python from [python.org](https://www.python.org/downloads/).
-   - Follow the installation instructions. You can also use **Homebrew** to install Python by running the following command in the terminal:
-     ```bash
-     brew install python
-     ```
+   - **For Windows**
+       - If you are using Windows, it is common to use the Windows Subsystem for Linux for development. WSL is not recommended for this class.** Later lessons use `matplotlib for graphs`. It is difficult to do the configuration needed to get graphs to show in the WSL environment. Windows users should install in Windows native.
+       - Follow the instructions on the website. Make sure to check the option to **Add Python to PATH** during installation.
+       - Windows users should have Git for Windows installed, and should use Git Bash for all subsequent steps.
 
-3. **For Linux**:
-   - Most Linux distributions come with Python pre-installed. To install or upgrade Python 3, you can use the package manager:
-     - For **Debian/Ubuntu** systems:
-       ```bash
-       sudo apt update
-       sudo apt install python3
-       ```
-     - For **Fedora**:
-       ```bash
-       sudo dnf install python3
-       ```
-     - For **Arch Linux**:
-       ```bash
-       sudo pacman -S python
-       ```
+   - **For macOS**:
+      - macOS typically comes with Python pre-installed. To ensure you are using Python 3, download the latest version of Python from [python.org](https://www.python.org/downloads/).
+      - Follow the installation instructions. You can also use **Homebrew** to install Python by running the following command in the terminal:
+          ```bash
+          brew install python
+          ```
+    - **For Linux**:
+       - Most Linux distributions come with Python pre-installed, but you need to have Python 3 for the class. To install or upgrade Python 3, you can use the package manager:
+       - For **Debian/Ubuntu** systems:
+          ```bash
+          sudo apt update
+          sudo apt install python3
+          ```
+        - For **Fedora**:
+          ```bash
+          sudo dnf install python3
+          ```
+        - For **Arch Linux**:
+          ```bash
+          sudo pacman -S python
+          ```
 
-4. **Verifying Python Installation**:
-    After installation, you can verify that Python was installed correctly by opening a terminal or command prompt and running:
+
+2. **Verify Python Installation**:
+    After installation, you can verify that Python is installed correctly, and that you have Python 3, by opening a terminal or command prompt and running:
    
     ```bash
     python --version
@@ -89,22 +86,62 @@ Follow the installation instructions for your operating system:
     ```
     Python 3.9.7
     ```
-5. **Create a Project Folder**
-    - You need to put your code in a project folder, and this requires a little setup.  Your work for future lessons will require some packages to be added to Python.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python. Windows users should use a Git Bash session for these steps. Create the folder, cd to that folder, and then do the following:
-    - Install the virtualenv package: `pip install virtualenv`
-    - Windows users enter the following commands:
+
+    At this point, you can try the Python Interactive Shell.  You type `python` or `python3` without arguments.  This brings up a command line into which you can type code, which is then executed as each statement is completed.  The code is not preserved, of course, but this is a good way to try many of the ideas below.  Ctrl-D exits the shell.
+
+3. **Install pip**
+
+    **Pip** is Python’s package installer, and it is included automatically with Python versions 3.4 and above. It allows you to easily install and manage Python libraries and packages from the Python Package Index (PyPI).
+
+    #### Verify if pip is installed:
+    To check if **pip** is installed, open a terminal or command prompt and type:
+
     ```bash
-    python -m venv .venv
-    source .venv/Scripts/activate
-    code .
+    pip --version
     ```
-    - Mac users enter the following commands:
+
+    If you're using **Python 3**, you might need to use `pip3` instead:
+
     ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    code .
+    pip3 --version
     ```
-6. **Set Up VSCode for Python**
+
+    This should display the installed version of pip. If pip is not installed or you encounter an error, you may need to reinstall Python and ensure that the box for **Add Python to PATH** is checked.
+
+    #### Upgrading pip:
+    If you already have pip installed but want to make sure it’s up to date, run the following command:
+
+    ```bash
+    python -m pip install --upgrade pip
+    ```
+
+    Or, for Python 3:
+
+    ```bash
+    python3 -m pip install --upgrade pip
+    ```
+
+4. **Create a Project Folder**
+    - You need to put your code in a project folder, and this requires a little setup.  Your assignments will use a git repository, and the instructions for that repository include setting up your project folder.  But, you should also have a folder to try the code samples from the assignments.  Python code often requires some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
+    
+    Create a folder, cd to that folder, and then do the following:
+    - Install the virtualenv package: `pip install virtualenv` (or perhaps `pip3 insall virtualenv`).
+    - Then, create the virtual environment.
+        - Windows users enter the following commands:
+        ```bash
+        python -m venv .venv
+        source .venv/Scripts/activate
+        code .
+        ```
+        - Mac and Linux users enter the following commands:
+            ```bash
+            python3 -m venv .venv
+            source .venv/bin/activate
+            code .
+            ```
+    Once your virtual environment is activated, you see `.venv` as part of your terminal prompt.  Be sure that is present for all subsequent work.  When you create a new terminal session, you have to activate the virtual environment again.  When the virtual environment is active, you can always use the commands `python` and `pip`, that is, you don't need `python3` or `pip3`.
+
+5. **Set Up VSCode for Python**
     - Some developers may choose an alternate editor, such as PyCharm, but VSCode works well, and the instructions below describe what you need to do.
     - Be sure to install the Python extension for VSCode.
     - Windows developers: You should add the following lines to your `~/.bashrc` file (creating the file if it does not exist):
@@ -118,6 +155,14 @@ Follow the installation instructions for your operating system:
 
         
 ## 1.2 Python Basics
+
+### If you are a JavaScript Developer
+
+You have a head start.  All the basic structures of programming (loops, conditional statements, variables, and so on) are in Python.  But, Python syntax is different.  You'll have to adjust to the differences.  You may want to read [this summary](https://www.freecodecamp.org/news/learn-python-for-javascript-developers-handbook/). (This is optional.)
+
+### A Cheat Sheet
+
+Here is [a one page summary of the Python syntax](https://quickref.me/python.html).  You may want to have it on hand.
 
 ### Variables in Python
 
@@ -135,62 +180,12 @@ age = 28           # A variable storing an integer
 height = 5.8       # A variable storing a float (decimal)
 ```
 
-### Install pip
+Here are some general rules for Python variable naming.
+- Lowercase: Use lowercase letters for variable names.
+- Underscores: Separate words in variable names with underscores (_).
+- Descriptive: Choose meaningful names that clearly indicate the variable's purpose.
+- Avoid single-character names: Except for simple loop counters (e.g., i, j, k).
 
-**Pip** is Python’s package installer, and it is included automatically with Python versions 3.4 and above. It allows you to easily install and manage Python libraries and packages from the Python Package Index (PyPI).
-
-#### Verify if pip is installed:
-To check if **pip** is installed, open a terminal or command prompt and type:
-
-```bash
-pip --version
-```
-
-If you're using **Python 3**, you might need to use `pip3` instead:
-
-```bash
-pip3 --version
-```
-
-This should display the installed version of pip. If pip is not installed or you encounter an error, you may need to reinstall Python and ensure that the box for **Add Python to PATH** is checked.
-
-#### Upgrading pip:
-If you already have pip installed but want to make sure it’s up to date, run the following command:
-
-```bash
-python -m pip install --upgrade pip
-```
-
-Or, for Python 3:
-
-```bash
-python3 -m pip install --upgrade pip
-```
-
-#### Using pip:
-Once pip is installed, you can install Python packages by using the following command:
-
-```bash
-pip install package_name
-```
-
-Or, for Python 3:
-
-```bash
-pip3 install package_name
-```
-
-For example, to install the `requests` library (which allows you to make HTTP requests), you would use:
-
-```bash
-pip install requests
-```
-
-Or, for Python 3:
-
-```bash
-pip3 install requests
-```
 ### Data Types in Python
 
 **Data types** tell Python what kind of data is stored in a variable. Common data types include:
@@ -263,7 +258,7 @@ result = int(2.8) + 3  # 5 (integer, because we explicitly converted the float t
 
 ### 🎬 Video 1.2: Data Types and Conversion
 
-Learn how to work with data types in Python in our first video, which covers essential type conversions with `int()`, `float()`, `str()`, and `bool()`, practical examples of when to use them, and tips to avoid common pitfalls.
+Learn how to work with data types in Python in our first video, which covers essential type conversions with `int()`, `float()`, `str()`, and `bool()`, practical examples of when to use them, and tips to avoid common pitfalls.  In general, you are not required to view the videos for this class, as the lesson text covers the same information, but the videos may help you learn and remember.
 
 **[Watch the video here.](https://youtu.be/v5NBGGHKJtI)**
 
@@ -394,7 +389,7 @@ In Python, indentation plays a crucial role in the syntax of the language. Unlik
 **Key Concepts:**
 
 * **Indentation in Control Structures:** 
-    * All code under control structures (such as `if`, `else`, `for`, `while`, and function definitions) must be indented.
+    * All code under control structures (such as `if`, `else`, `for`, `while`, and function definitions) must be indented.  You always put a colon `:` before starting an indented block on the next line.
 
 * **Consistent Indentation:**
     * Consistency is key. Python does not allow mixing tabs and spaces. Use either spaces or tabs but never both. 
@@ -576,6 +571,10 @@ for i in range(3):
 
 </details>
 
+### Long Lines 
+
+If you need to split a line for readability, you put a backslash `\` at the end of the line.  You don't need to indent the line after the backslash.  Python concatenates the two lines (or more, if the next line also has a backslash.)  If you do indent, Python includes the indentations.  Long strings can also be created another way.  You start and end them with three quotes. `"""`  Python concatenates them, including the line feeds, spaces, and indentations."
+
 ## 🎬 Video 1.5: Loops and Conditionals
 
 Our next video is a breakdown breakdown of  common situations in which someone might use loops, how to control loop behavior with `break` and `continue`, and loop nesting.
@@ -708,6 +707,64 @@ Positional arguments: (1, 2, 3)
 Keyword arguments: {'name': 'Janet', 'role': 'Developer'}
 ```
 
+**Another Example**
+
+```python
+def mixed_function_2(*args, a_value="default"):
+    print(f"args are {args} and a_value is {a_value}")
+
+mixed_function_2(1, 2, 3, a_value="override")
+```
+
+In this case, a_value is a keyword argument, because it comes after the `*args`.  In the example (this is not always so) a_value has a default value.  The keyword is given explicitly here, instead of using `**kwargs`.  When the keyword is given explicitly, the value is not delivered in a dictionary.  It is accessed using the keyword as a variable name. 
+
+Functions are always declared with named positional arguments (if any) first, then the `*args` (if this is used), then the explicitly named keyword arguments (if any), and then in last place `**kwargs` (if this is used).  When a function with keyword arguments is called, the order in which the keyword arguments is given doesn't matter (except they should come after the positional arguments.) 
+
+### Variable Scope
+
+If a variable is declared inside a function, it is local to that function.  For example, this code gives an error:
+
+```python
+def set_name():
+    name="James"
+
+set_name()
+print(name)
+```
+The name variable is declared inside the function, and is not defined outside.  Also note the results below:
+```python
+name = "Hima"
+
+def set_name():
+    name="James"
+
+set_name()
+print(name) # Prints "Hima"
+
+def set_name_2(name)
+    name = "Nguyen"
+
+set_name_2()
+print(name) # Prints "Hima"
+```
+
+Python acts as if the `name=` statement inside each function is the declaration for a new local variable called `name`.  The first `name=` statement in the script above is for a global variable.
+
+A function *can* access global variables.  For example, suppose we add this code to the script above.
+
+```python
+def print_global_name():
+    print(name) # Prints "Hima"
+```
+
+And, a function *can* change values stored in global variables (although this is typically bad practice).  As in this code:
+```python
+this_list=[0,1] # a global
+def change_list():
+    this_list[1]=17 # Does change this_list[1] for the this_list global
+```
+Indentation blocks in Python have no effect on variable scope.
+
 ### 🎬 Video 1.6: Functions
 
 Our supplemental video for this section overviews functions, arguments, and parameters; along with two sets of example code.
@@ -812,6 +869,10 @@ def multiply(a, b):
 multiply(3, 5)
 ```
 
+### For Further Investigation: Using the Debugger
+
+VSCode with the Python plugin provides a debugger.  You can set breakpoints, step in or over function calls, display or change the values of variables, and so on.  You will need to learn to use a debugger eventually, although it is not required for this course.  If you want to check this out, see [this link](https://code.visualstudio.com/docs/python/python-quick-start#_debug) for a description, and [here](https://www.youtube.com/watch?v=b4p-SBjHh28) is a video that shows the process.
+
 ### 🎬 Video 1.7: Basic Debugging
 
 Let's wrap up this section with a short video on debugging.
@@ -906,6 +967,8 @@ Our final video of Lesson 1 covers error handling with `try` and  `except` block
 
 **[View the video here](https://youtu.be/NIWwJbo-9_8?feature=shared).**
 
+
+
 ### Check for Understanding
 
 **Question**: If the following code tries to divide by zero, which message will it print?
@@ -927,6 +990,27 @@ except ZeroDivisionError:
 
 **Answer:** C) `Error: Division by zero is not allowed.`
 </details>
+
+## 1.9 String Operations
+
+In Python, everything is an object, and each object is an instance of a class.  Each class provides methods for the object.  Try the following.  Open a `.py` file in VSCode, and declare a string, like:
+```
+my_string = "abc"
+```
+Then, on the next line, type `my_string.`.  As you type the dot, VSCode prompts you with a pulldown that has many methods for this instance of the `str` class, such as lower(), upper(), split(), join(), strip(), and so on.  You can check out the reference [here.](https://docs.python.org/3/library/string.html)
+
+You can also use formatted strings.  These do variable substitution to compose a string.  Each of the values is converted to a string and added to the result.  Formatted strings have an `f` just before the first double quote, as follows:
+```
+name = "Ed"
+count = 6
+kind_of_object = "apples"
+print(f"{name} has {count} {kind_of_object}.") # Prints "Ed has 6 apples."
+```
+You can also add format indications, for example to show two decimal places:
+```
+cost = 22/7
+print(f"The pie cost ${cost:.2f}.")
+```
 
 ## 🎉 Congratulations on finishing your first lesson in Python Essentials!
 
