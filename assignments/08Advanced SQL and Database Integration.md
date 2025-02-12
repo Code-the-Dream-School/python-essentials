@@ -16,10 +16,7 @@ You create the code for this assignment in your python_homework folder.  Be sure
 
 ### **Preparation and Practice**
 
-Your python_homework folder contains a program called `load_db.py`.  Take a look at its contents.  It creates a series of tables, for employees, customers, orders, products, and order_details.  Each order is associated with a customer and an employee.  For each order, there are line_items associated with the order, one line item for each product comprising the order.  You'll see the schema created at the top of the file.  Then, the file uses pandas to load data for each table from csv files into the database.  The resulting database is stored as ./db/lesson.db.
-
-Run the `load_db.py` program to create and populate the database.  You can run it again as needed to restore the database to its initial state.  Next, run the `sqlcommand.py` program.  This prompts you with a command line you can use to enter SQL statements.  (Each statement must end with a semicolon.)
-You can do SELECT, INSERT, UPDATE and DELETE.  The SELECT statements can have JOIN, GROUP BY, ORDER BY, subqueries, HAVING, etc.  Practice these until you feel familiar with them.
+You have already experimented with the `sqlcommand.py` program.  Run it again, and practice what you've learned.  You can do SELECT, INSERT, UPDATE and DELETE.  The SELECT statements can have JOIN, GROUP BY, ORDER BY, subqueries, HAVING, etc.  Practice these until you feel familiar with them.
 
 For each of the following tasks, you first use the sqlcommand command line to get the right SQL statement.  Then you add it to your program.
 
