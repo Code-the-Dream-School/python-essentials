@@ -183,11 +183,15 @@ SQL injection can be prevented by using parameterized queries, ensuring that use
 
 ### **Example:**
 ```python
-cursor.execute("SELECT * FROM Employees WHERE department_id = ?", (department_id,))
+cursor.execute("SELECT * FROM Employees WHERE department_id = ?;", (department_id,))
 ```
 
-This ensures that `department_id` is treated as a parameter and not part of the SQL statement itself.
+This ensures that `department_id` is treated as a parameter and not part of the SQL statement itself.  If any part of the SQL statement comes from the end user or other untrusted source, always put that part in a parameter so that it can be sanitized to strip out rogue SQL.  Don't do it like this:
 
+```python
+cursor.execute(f"SELECT * FROM Employees WHERE department_id = {department_id};")
+# or, equally bad:
+cursor.execute("SELECT * FROM Employees WHERE department_id = " + department_id + ";")
 ---
 
 ## **8.8 Window Functions**

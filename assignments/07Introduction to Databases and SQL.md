@@ -46,6 +46,17 @@ For this assignment, you create code in your python_homework folder (not Kaggle 
    ```
    This returns an iterable collection of tuples, one for each row.  An interable collection works like a list.  You should loop through the collection and print each row.  Alternately, you can do a `cursor.fetchone()` to get the first (or next) row from the result.
 
+## **Task 6: Read Data into a DataFrame**
+
+1. While still within the python_homework directory, create a program, `sql_intro_2.py`.
+2. The program should read all the orders for all the customers, to get all the products that each as ordered into a DataFrame.  The lesson shows how.
+3. As some customers may have ordered the same product in several different orders, you want to combine the rows for these different orders.  You use the group_by() operation on the DataFrame to combine rows where the product_name and the customer_name are the same.
+4. With the group_by(), use count() to show how many times each customer ordered a given product.
+5. Sort the DataFrame by the order_id column.
+6. Print out the last 20 rows of the resulting DataFrame.
+
+As we'll learn in the next lesson, the ordering, grouping, and count operations can be done in SQL, more efficiently than in Pandas.  The key concepts of pandas and SQL overlap very strongly.
+
 ---
 
 ### Submit Your Assignment on GitHub**  
