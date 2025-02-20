@@ -14,7 +14,7 @@ This assignment is to be created in a Kaggle notebook, as you did for Assignment
    - The DataFrame contains columns for 'Name', 'Age', 'Salary', 'Join_Date', and 'City', with some missing values.
    - Print the original DataFrame.
   
-Here's a blank DataFrame to help you get started: 
+Here's a summary of what the DataFrame looks like to help you get started: 
 
 ```python
 data = {
@@ -27,7 +27,13 @@ data = {
 df = pd.DataFrame(data)
 ```
 
-2. **Perform the following operations on the DataFrame:**
+You can find the Kaggle data set at https://kaggle.com/datasets/9b958a131430c339b0f13e5851bcfa7654e217f0ce3db66abdb1a26ab59c059d. While logged in you should be able to click "Code" and create a notebook out of this data.
+
+After you do this you can use the following to load the CSV into a data frame.
+```Python
+df = pd.read_csv('/kaggle/input/code-the-dream-lesson-5/fake_data.csv')
+```
+2. **Perform the following operations on  new DataFrames:**
    - **Remove rows with missing values** using the `dropna()` method and print the updated DataFrame.
    - **Replace missing values** using the `fillna()` method:
      - Replace missing 'Name' values with `'Unknown'`.
