@@ -1,11 +1,14 @@
 # **Lesson 1 Assignment: Intro to Python**  
 
 ## **Objective and Overview**  
-In this assignment, you will practice key Python concepts including:  
-✅ Data type conversion  
-✅ User input and error handling  
-✅ Functions and loops  
-✅ File handling  
+In this assignment, you will practice key Python concepts including:    
+✅ Declaring functions  
+✅ Formatted Strings  
+✅ Type Conversion  
+✅ Error Handling  
+✅ For Loops with Ranges  
+✅ Use of *args and **kwargs in Function Declarations  
+✅ String Manipulation   
 
 ### 🎙️ Podcast: Lesson 1
 
@@ -17,6 +20,8 @@ If you ever feel stuck, want a quick refresher before diving in, or just prefer 
 
 **[Listen to the assignment overview podcast here](https://youtu.be/azM0-ybstt4).**
 
+Since the podcast was created, the assignment itself has been updated to make it more comprehensive, so the podcast doesn't match up. You could check out the format/style of the podcast to see if it is the sort of thing that would help you.
+
 ## **Instructions**
 
 ### **Setup**
@@ -27,56 +32,119 @@ Your homework for this and some future assignments will use a special python hom
 
 At the outset, you create python `.py` files.  In some future lessons, you will create Jupyter notebooks. Homework for this assignment is created within your `python_homework` folder.  Be sure to create an `assignment1` git branch.  Then, write Python code to complete the following tasks.  As you do, put in **comment lines to mark your code for Task 1, Task 2, and so on.** That will help your reviewer.
 
+This assignment uses a Python tool for automated testing, called PyTest.  You installed it when you set up the python_homework folder.  You'll code a series of functions.  PyTest will validate whether your code is correct.  To run the test:  
+
+- Change to the python_homework folder.
+- Type `code .` to bring up VSCode for this folder. 
+- Start a terminal session within VSCode and enter the command
+
+```bash
+pytest -x assignment1-test.py
+```
+
+PyTest attempts to perform the tests, and as you haven't written the code yet, it quickly ends with an error -- in this case, because you haven't created the hello function.  You follow this pattern: 
+
+- Add your code to the `./assignment1/assignment1.py file` which is provided (but it's empty.)
+- Write each function according to the instructions below.
+- Put a print() statement in the mainline of your code (not inside the function), and call the function from within the print() statement to see if it works.
+- Then run the test using the command above.  
+- If it reports errors, change your code to fix them.  
+
+Once the first test passes, you'll get an error for the second test, so you go on to write the second function, and so on until all 10 tests complete successfully.  You should have a look at assignment1-test.py to see how it works and what it tests for.  Keep going until all tests pass.
+
+There are a number of new Python capabilities introduced during this assignment, beyond what is in the lesson, but they are explained below, so that you can learn and practice at the same time.
+
+**Help is Available**
+
+We have covered quite a bit, and it's probably all new to you.  If you get stuck, a sample of a completed assignment1.py is provided in the examples folder.  Don't copy/paste.  Just look at the example to get yourself past your stumbling block.
+
 ---
 
-### **Task 1: Data Type Conversion**  
-In the homework repository, create a file `data_type_conversion.py`.   It should do the following.
-1. **Create a variable `num_str`** and assign it a string value representing a number (e.g., `"25"`).  
-2. **Convert `num_str` to an integer** and perform an arithmetic operation using another variable, `age`. Print the result.  
-3. **Convert a float (`height`) to a string**, concatenate it with another string (e.g., `" meters"`), and print the result.  
-4. **Convert an integer (`age`) to a float** and print the result.  
+### **Task 1: Hello**
+
+Write a hello function that takes no arguments and returns `Hello!`.  Now, what matters here is what the function *returns*.  You can print() whatever you want for debugging purposes, but the tests ignore that, and only check the return value.
+
+### **Task 2: Greet with a Formatted String**
+
+Write a greet function.  It takes one argument, a name, and returns `Hello, Name!`.  Use a formatted string.  Note that you have to return exactly the right string or the test fails -- but PyTest tells you what didn't match.
+
+### **Task 3: Calculator**  
+- Write a calc function.  It takes three arguments.  The default value for the third argument is "multiply".  The first two arguments are values that are to be combined using the operation requested by the third argument, a string that is one of the following add, subtract, multiply, divide, modulo, int_divide (for integer division) and power.  The function returns the result.
+- Error handling: When the function is called, it could ask you to divide by 0. That will throw an exception: Which one?  You can find out by triggering the exception in your program or in the Python Interactive Shell.  Wrap the code within the calc function in a try block, and put in an except statement for this exception.  If the exception occurs, return the string "You can't divide by 0!".  
+- More error handling: When the function is called, the parameters that are passed might not work for the operation.  For example, you can't multiply two strings.  Find out which exception occurs, catch it, and return a string like "You can't multiply those values!", except that the string might say add or subtract or divide instead of multiply -- so you use a formatted string.
+
+Again, as you complete each function, you run the test to see whether everything is correct.
 
 ---
 
-### **Task 2: Simple Calculator** 
-Create a file `calc.py` with the following. 
-1. **Ask the user for two numbers** (`num1` and `num2`).  
-2. **Perform basic arithmetic operations** (addition, subtraction, multiplication, division).  
-3. **Handle errors for division by zero** and display an appropriate message.  
-4. **Print the results** of all operations.  
+### **Task 4: Data Type Conversion** 
+- Create a function called data_type_conversion.  It takes two parameters, the value and the name of the data type requested, one of float, str, or int.  Return the converted value.
+- Error handling: The function might be called with a bad parameter.  For example, the caller might try to convert the string "nonsense" to a float.  Catch the error that occurs in this case.  If this error occurs, return the string "You can't convert nonsense to a float!", except you use the value and data type that are passed as parameters -- so again you use a formatted string.
 
 ---
 
-### **Task 3: Grading System** 
-Create a file `grade.py` with the following. 
-1. **Ask the user to enter their score** (as a float).  
-2. **Determine the letter grade** based on the following scale:  
+### **Task 5: Grading System, Using `*args`** 
+- Create a grade function.  It should collect an arbitrary number of parameters, compute the average, and return the grade.
+based on the following scale:  
    - A: 90 and above  
    - B: 80-89  
    - C: 70-79  
    - D: 60-69  
    - F: Below 60  
-3. **Print the assigned grade**.  
-4. **Allow the user to enter multiple scores**, store them in a list, calculate the average, and display the corresponding letter grade.  
+- When you use `*args` you get access to a variable named `args` in your function, which is a tuple, an ordered collection of values like a list.  You'll learn more about tuples and lists in the next lesson.  There are some helpful functions you can use at this point: `sum(args)`, `len(args)`, and so on.  One of the curiosities of Python is that these are not methods of any class.  They are just standalone functions.
+- Handle the error that occurs if the parameters are nonsense.  Return the string "Invalid data was provided." in this case.  (Typically, you don't handle every possible exception in your error handling, except if the values in the parameters comes from the end user.)
 
 ---
 
-### **Task 4: Function to Calculate Average**  
-Create a file `average.py` that contains the following.
-1. **Create a function `calculate_average`** that takes a list of numbers as input.  
-2. **Calculate and return the average** of the numbers in the list. If the list is empty, return 0.  
-3. **Test the function** with `[1, 2, 3, 4, 5]` and print the result.  
-4. **Validate input data** to ensure the list contains only numeric values. Print an error message if invalid data is found.  
+### **Task 6: Use a For Loop with a Range**  
+- Create a function called repeat.  It takes two parameters, a string and a count, and returns a new string that is the old one repeated count times.
+- You can get the test to pass by just returning `string * count`.  That would produce the correct return value.  But, for this task, do it using a for loop and a range.
 
 ---
-Modify the file `calc.py` to add the following.
-### **Task 5: Calculator with Error Handling**  
-1. **Create a function `divide_numbers(num1, num2)`** that divides two numbers.  
-2. **Use a `try-except` block** to handle division by zero and return an error message if needed.  
-3. **Test the function** with user input.  
-4. **Extend error handling** to catch other errors, such as non-numeric input.  
+
+### **Task 7: Student Scores, Using `**kwargs`**  
+
+- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "average".  If it is "best", the name of the student with the higest score is returned.  If it is "average", the average score is returned.
+- As you are using `**kwargs`, your function can access a variable named `kwargs`, which is a dict.  The next lesson explains about dicts.  What you need to know now is the following:
+   - A dict is a collection of key value pairs.
+   - You can iterate through the dict as follows:
+   ```python
+   for key, value in kwargs.items():
+   ```
+   - You can also get `kwargs.keys()` and `kwargs.values()`.
+- The arbitrary list of keyword arguments uses the names of students as the keywords and their test score as the value for each.
 
 ---
+
+### **Task 8: Titleize, with String and List Operations**
+
+- Create a function called titleize.  It accepts one parameter, a string.  The function returns a new string, where the parameter string is capitalized as if it were a book title.
+- The rules for title capitalization are: (1) The first word is always capitalized. (2) The last word is always capitalized. (3) All the other words are capitalized, except little words.  For the purposes of this task, the little words are "a", "on", "an", "the", "of", "and", "is", and "in".
+- The following string methods may be helpful: split(), join(), and capitalize().  Look 'em up.
+- The split() method returns a list. You might store this in the `words` variable.  `words[-1]` gives the last element in the list.
+- The `in` comparison operator: You have seen `in` used in loops.  But it can also be used for comparisons, for example to check to see if a substring occurs in a string, or a value occurs in a list.
+
+---
+
+### **Task 9: Hangman, with more String Operations**
+
+- Create a function hangman.  It takes two parameters, both strings, the secret and the guess.
+- The secret is some word that the caller doesn't know.  So the caller guesses various letters, which are the ones in the guess string.
+- A string is returned.  Each letter in the returned string corresponds to a letter in the secret, except any letters that are not in the guess string are replaced with an underscore.  The others are returned in place.  Not everyone has played this kid's game, but it's common in the US.
+- Example: Suppose the secret is "alphabet" and the guess is "ab".  The returned string would be "a___ab__".
+- Note that Python strings are immutable.  That means that the following code would give an error:
+```python
+secret = "alphabet"
+secret[1] = "_"
+```
+- On the other hand, you can concatenate strings with the `+` operator.
+
+---
+
+### **Task 10: Pig Latin, Another String Manipulation Exercise**
+
+- Pig Latin is a kid's trick language.  Each word is modified according to the following rules.  (1) If the string starts with a vowel (aeiou), "ay" is tacked onto the end. (2) If the string starts with one or several consonants, they are moved to the end and "ay" is tacked on after them. (3) "qu" is a special case, as both of them get moved to the end of the word, as if they were one consonant letter.
+- Create a function called pig_latin.  It takes an English string or sentence and converts it to Pig Latin, returning the result.  We will assume that there is no punctuation and that everything is lower case.
 
 ### **Step 2: Submit Your Assignment on GitHub**  
 
