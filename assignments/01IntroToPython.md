@@ -26,7 +26,7 @@ Since the podcast was created, the assignment itself has been updated to make it
 
 ### **Setup**
 
-Your homework for this and some future assignments will use a special python homework repository, so that it can be submitted using git.  That repository is [here.](https://github.com/Code-the-Dream-School/python_homework)  Click on the link, and carefully **follow the instructions in the README**.  You will then have your own copy of the repository, connected to your GitHub account.  You create the program files for the homework in the root of that repository.  For each assignment, you create a separate git branch.  When you have completed your assignment, you add and commit your changes in that branch, push it to your GitHub, and create a pull request for that branch.  You provide a link to that pull request when you submit your homework.  Your instructor will review it, approving or requesting changes.  Once your instructor has approved the pull request, you can merge it.
+Your homework for this and some future assignments will use a special python homework repository, so that it can be submitted using git.  That repository is [here.](https://github.com/Code-the-Dream-School/python_homework)  Click on the link, and carefully **follow the instructions in the README**.  You will then have your own copy of the repository, connected to your GitHub account.  You create the program files for the homework in the root of that repository.  For each assignment, you create a separate git branch (e.g. `git checkout -b lesson1`).  When you have completed your assignment, you add and commit your changes in that branch, push it to your GitHub, and create a pull request for that branch.  You provide a link to that pull request when you submit your homework.  Your instructor will review it, approving or requesting changes.  Once your instructor has approved the pull request, you can merge it.
 
 ### **Step 1: Complete the Coding Tasks**  
 
@@ -34,19 +34,19 @@ At the outset, you create python `.py` files.  In some future lessons, you will 
 
 This assignment uses a Python tool for automated testing, called PyTest.  You installed it when you set up the python_homework folder.  You'll code a series of functions.  PyTest will validate whether your code is correct.  To run the test:  
 
-- Change to the python_homework folder.
+- Change to the python_homework/assignment1 folder.
 - Type `code .` to bring up VSCode for this folder. 
-- Start a terminal session within VSCode and enter the command
+- Start a git bash terminal session within VSCode and enter the command (you can make git bash the default using ctl-shift-p and setting the `Terminal: Select Default Profile`)
 
 ```bash
-pytest -x assignment1-test.py
+pytest -v -x assignment1-test.py # can use just -x, adding -v lists the passing tests
 ```
 
 PyTest attempts to perform the tests, and as you haven't written the code yet, it quickly ends with an error -- in this case, because you haven't created the hello function.  You follow this pattern: 
 
 - Add your code to the `./assignment1/assignment1.py file` which is provided (but it's empty.)
 - Write each function according to the instructions below.
-- Put a print() statement in the mainline of your code (not inside the function), and call the function from within the print() statement to see if it works.
+- Put a print() statement in the mainline of your code (not inside the function), and call the function from within the print() statement to see if it works.  You can run the file by typing `python assignment1.py`.
 - Then run the test using the command above.  
 - If it reports errors, change your code to fix them.  
 
@@ -71,7 +71,7 @@ Write a greet function.  It takes one argument, a name, and returns `Hello, Name
 ### **Task 3: Calculator**  
 - Write a calc function.  It takes three arguments.  The default value for the third argument is "multiply".  The first two arguments are values that are to be combined using the operation requested by the third argument, a string that is one of the following add, subtract, multiply, divide, modulo, int_divide (for integer division) and power.  The function returns the result.
 - Error handling: When the function is called, it could ask you to divide by 0. That will throw an exception: Which one?  You can find out by triggering the exception in your program or in the Python Interactive Shell.  Wrap the code within the calc function in a try block, and put in an except statement for this exception.  If the exception occurs, return the string "You can't divide by 0!".  
-- More error handling: When the function is called, the parameters that are passed might not work for the operation.  For example, you can't multiply two strings.  Find out which exception occurs, catch it, and return a string like "You can't multiply those values!", except that the string might say add or subtract or divide instead of multiply -- so you use a formatted string.
+- More error handling: When the function is called, the parameters that are passed might not work for the operation.  For example, you can't multiply two strings.  Find out which exception occurs, catch it, and return the string "You can't multiply those values!".
 - Here's a tip.  You have to do different things for add, multiply, divide and so on.  So you can do a conditional cascade, if/elif/elif/else.  That's perfectly valid.  But you might want to use the match-case Python statement instead.  Look it up!  It just improves code appearance.
 
 Again, as you complete each function, you run the test to see whether everything is correct.
@@ -80,7 +80,7 @@ Again, as you complete each function, you run the test to see whether everything
 
 ### **Task 4: Data Type Conversion** 
 - Create a function called data_type_conversion.  It takes two parameters, the value and the name of the data type requested, one of float, str, or int.  Return the converted value.
-- Error handling: The function might be called with a bad parameter.  For example, the caller might try to convert the string "nonsense" to a float.  Catch the error that occurs in this case.  If this error occurs, return the string "You can't convert nonsense to a float!", except you use the value and data type that are passed as parameters -- so again you use a formatted string.
+- Error handling: The function might be called with a bad parameter.  For example, the caller might try to convert the string "nonsense" to a float.  Catch the error that occurs in this case.  If this error occurs, return the string `You can't convert {value} into a {type}.`, except you use the value and data type that are passed as parameters -- so again you use a formatted string.
 
 ---
 
@@ -105,7 +105,7 @@ based on the following scale:
 
 ### **Task 7: Student Scores, Using `**kwargs`**  
 
-- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "average".  If it is "best", the name of the student with the higest score is returned.  If it is "average", the average score is returned.
+- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "mean".  If it is "best", the name of the student with the higest score is returned.  If it is "mean", the average score is returned.
 - As you are using `**kwargs`, your function can access a variable named `kwargs`, which is a dict.  The next lesson explains about dicts.  What you need to know now is the following:
    - A dict is a collection of key value pairs.
    - You can iterate through the dict as follows:

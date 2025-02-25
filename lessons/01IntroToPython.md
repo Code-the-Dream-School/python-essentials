@@ -19,7 +19,7 @@ If you have questions at any point, ask a question in the `discussion` Slack cha
 Topics:
 
 - **Setting Up Your Python Environment**:  
-  Installing Python, pip, and IDEs (VS Code, Jupyter Notebook, or Google Colab). Verifying installations and creating `.py` files.
+  Installing Python, pip, and your IDE. We recommend the VS Code IDE. It's ok to use another IDE if you are comfortable with it. Verifying installations and creating `.py` files.
 - **Python Basics**:  
   Variables, data types (integers, floats, strings, booleans), data conversion (explicit and implicit), and operators (arithmetic, comparison, logical).
 - **Block Structure and Indentation**:  
@@ -32,7 +32,7 @@ Topics:
   - **Error Handling**: Introduction to `try`, `except` for handling runtime errors.  
   - **Basic Debugging**: Using print statements and the `logging` module to debug code effectively.
 
-## 1.1 Setting up uour environment 
+## 1.1 Setting up your environment 
 
 
 ### Install Python
@@ -42,12 +42,12 @@ You can download Python from the official website: [python.org](https://www.pyth
 Follow the installation instructions for your operating system:
 
 1. **Install Python:**
-   Follow the installation instructions for your operating system.
+   Follow the installation instructions for your operating system.  For this class, we require Python 3.  The previous version (Python 2) is significantly different and is deprecated.
 
    - **For Windows**
        - If you are using Windows, it is common to use the Windows Subsystem for Linux for development. WSL is not recommended for this class.** Later lessons use `matplotlib for graphs`. It is difficult to do the configuration needed to get graphs to show in the WSL environment. Windows users should install in Windows native.
        - Follow the instructions on the website. Make sure to check the option to **Add Python to PATH** during installation.
-       - Windows users should have Git for Windows installed, and should use Git Bash for all subsequent steps.
+       - Windows users should have Git for Windows installed, and should use Git Bash for all subsequent steps.  If python hangs when you run it in a git bash window, add the following line to ~/.bash_profile: `alias python='winpty python.exe'`
 
    - **For macOS**:
       - macOS typically comes with Python pre-installed. To ensure you are using Python 3, download the latest version of Python from [python.org](https://www.python.org/downloads/).
@@ -78,7 +78,7 @@ Follow the installation instructions for your operating system:
     ```bash
     python --version
     ```
-    Or for Python 3 (in case of multiple Python versions):
+    Some systems install Python as python3 to differentiate it from a previous installation of Python 2, which is deprecated.:
     ```bash
     python3 --version
     ```
@@ -100,7 +100,7 @@ Follow the installation instructions for your operating system:
     pip --version
     ```
 
-    If you're using **Python 3**, you might need to use `pip3` instead:
+    Systems which install Python as `python3` will install pip as `pip3` instead:
 
     ```bash
     pip3 --version
@@ -121,8 +121,8 @@ Follow the installation instructions for your operating system:
     python3 -m pip install --upgrade pip
     ```
 
-4. **Create a Project Folder**
-    - You need to put your code in a project folder, and this requires a little setup.  Your assignments will use a git repository, and the instructions for that repository include setting up your project folder.  But, you should also have a folder to try the code samples from the assignments.  Python code often requires some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
+4. **Create a Working Folder**
+    - Your assignments will use a git repository, and the instructions for setting up that repository are included in the first lesson.  You should also have a separate folder to try the code samples from the lessons.  This working folder should be outside of the cloned repository on your computer.  For example, you could create a folder called `python_class`.  Inside that folder, create a folder called `working` to use for lesson code samples.  When you do the first assignment, you will also clone a repository called `python_homework` inside the `python_class` folder.  Your lessons and assignments will require some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
     
     Create a folder, cd to that folder, and then do the following:
     - Install the virtualenv package: `pip install virtualenv` (or perhaps `pip3 insall virtualenv`).
@@ -188,7 +188,7 @@ Here are some general rules for Python variable naming.
 
 ### Data Types in Python
 
-**Data types** tell Python what kind of data is stored in a variable. Common data types include:
+**Data types** specify the kind of data is stored in a variable. Common data types include:
 
 * Integer (`int`): Whole numbers (e.g., 42, -3)
 * Float (`float`): Decimal numbers (e.g., 3.14, -0.5)
@@ -485,6 +485,9 @@ for fruit in fruits:
     print(fruit)
 
 # Using range to loop a specific number of times
+# range(stop) where stop is greater than the last number generated
+# range(start, stop) starts with a number other 0
+# range(start, stop, step) uses the specified step size instead of 1 
 for i in range(3):
     print("Loop iteration:", i)
 ```
@@ -651,7 +654,7 @@ Functions can be made more flexible by allowing them to handle an arbitrary numb
 
 **What are *args?**
 
-*args allows a function to accept any number of positional arguments, which are collected into a tuple.
+*args allows a function to accept any number of positional arguments, which are collected into a tuple.  A tuple is an immutable, ordered data structure.  Tuples are covered in detail in lesson2.
 
 **Example:**
 
@@ -669,7 +672,7 @@ print(add_numbers(1, 2, 3, 4))  # Output: 10
 
 **What are **kwargs?**
 
-**kwargs allows a function to accept any number of keyword arguments, which are collected into a dictionary.
+**kwargs allows a function to accept any number of keyword arguments, which are collected into a dictionary.  A dictionary is an associative array similar to a Hash in Ruby or an object in JavaScript.  Dictionaries are covered in detail in lesson 2.
 
 **Example:**
 
