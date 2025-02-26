@@ -73,6 +73,8 @@ print(fruits)  # Output: ['apple', 'banana', 'cherry', 'orange']
 * `remove(item)`: Removes the first occurrence of `item`.
 * `sort()`: Sorts the list in place.
 
+There lots of methods and operations which apply to lists including all of the [common](https://docs.python.org/3/library/stdtypes.html#typesseq-common) and [mutable](https://docs.python.org/3/library/stdtypes.html#typesseq-mutable) sequence operations.
+
 A list is an example of an iterable.  So you can iterate on it, as follows:
 
 ```python
@@ -103,7 +105,7 @@ list_one = [3,4,5]
 list_two = list(map(lambda x: x+1, list_one)) # [4,5,6]
 ```
 
-The lambda feature is a way to declare a simple function.  Lambdas are, in some respects, similar to arrow functions in JavaScript, but they are much more limited.  A lambda is a simple one liner.  The syntax is as follows: the word `lambda` followed by the arguments to be passed (the map function only passes one parameter, so in the case above there is only argument for the lambda), followed by a colon `:`, followed by an expression.  The value of the expression is what is returned by the lambda.  You can only give one expression in a lambda, so there is no room for multiple statements.  (It's much more limited than JavaScript arrow functions.)
+The lambda feature is a way to declare a simple function.  Lambdas are, in some respects, similar to arrow functions in JavaScript, but they are much more limited.  A lambda is a simple one liner.  The syntax is as follows: the word `lambda` followed by the arguments to be passed (the map function only passes one parameter, so in the case above there is only argument for the lambda), followed by a colon `:`, followed by an expression.  The value of the expression is what is returned by the lambda.  You can only give one expression in a lambda, so there is no room for multiple statements.
 
 ### Tuples
 
@@ -133,7 +135,10 @@ person['email'] = 'jazmine@example.com'  # Add a new key-value pair
 
 * `keys()`: Returns a list of keys in the dictionary.
 * `values()`: Returns a list of values.
+* `items()`: Returns an iterable over the key, value pairs in the dictionary
 * `get(key)`: Returns the value associated with `key`, or `None` if `key` is not found.
+
+The operations and methods available for dictionaries are documented [here](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict).
 
 ### Sets
 
@@ -150,6 +155,8 @@ print(unique_numbers)  # Output: {1, 2, 3, 4, 5}
 * `union()`: Returns a set containing all unique elements from both sets.
 * `intersection()`: Returns elements common to both sets.
 * `difference()`: Returns elements present in one set but not the other.
+
+Set operations and methods are documented [here](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset).
 
 ### Review Table: Lists, Tuples, Dictionaries, and Sets
 
@@ -223,6 +230,8 @@ To write to a file, open it in `"w"` (write) or `"a"` (append) mode. Writing mod
 with open('example.txt', 'w') as file:
     file.write("Hello, World!")  # Write to the file
 ```
+
+The `write()` method does not add a newline after the string which is provided.  The special character `'\n'` can be added to the end of the string to add a newline.
 
 #### Additional Modes
 
@@ -359,7 +368,7 @@ from my_package import add, multiply
 
 ### Types of Modules
 
-1. **Standard Library**: Built-in modules like:
+1. **Standard Library**: Provides a vast library of modules and infrastructure.  It is documented [here](https://docs.python.org/3/library/index.html). Examples of built-in modules include:
    - `datetime` for dates and times
    - `json` for JSON data
    - `os` for operating system operations
@@ -582,6 +591,9 @@ and the script might load the contents of the file into a database.  The sys pac
 import sys
 for arg in sys.argv:
     print(arg)  # arg[0] is the program name.  The other arguments are what was passed on the command line.
+```
+
+The [argparse](https://docs.python.org/3/library/argparse.html#module-argparse) module provides a powerful framework for handling command line arguments.
 
 ### Video 2.5: Working with `os`
 
