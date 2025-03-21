@@ -7,13 +7,14 @@
 ### **Topics:**
 1. Handling Missing Data
 2. Data Transformation
-3. Removing Duplicates
-4. Handling Outliers
-5. Standardizing Data
-6. Validating Data Ranges
-7. Handling Categorical Data
-8. Handling Inconsistent Data
-9. Feature Engineering
+3. Using Regular Expressions
+4. Removing Duplicates
+5. Handling Outliers
+6. Standardizing Data
+7. Validating Data Ranges
+8. Handling Categorical Data
+9. Handling Inconsistent Data
+10. Feature Engineering
 
 ---
 
@@ -94,7 +95,11 @@ print(df)
 
 ---
 
-## **6.3 Removing Duplicates**
+## **6.3 Using Regular Expressions
+
+### To be added
+
+## **6.4 Removing Duplicates**
 
 ### **Overview**
 Duplicates can distort analysis by inflating metrics or introducing bias. Identifying and removing them ensures data quality.
@@ -124,7 +129,7 @@ print(df_no_duplicates)
 
 ---
 
-## **6.4 Handling Outliers**
+## **6.5 Handling Outliers**
 
 ### **Overview**
 Outliers are extreme values that deviate significantly from other observations and can bias statistical calculations.
@@ -146,7 +151,7 @@ print(df)
 
 ---
 
-## **6.5 Standardizing Data**
+## **6.6 Standardizing Data**
 
 ### **Overview**
 Standardizing text data ensures consistency, making it easier to group, filter, and analyze.
@@ -173,7 +178,7 @@ print(df)
 
 ---
 
-## **6.6 Validating Data Ranges**
+## **6.7 Validating Data Ranges**
 
 ### **Overview**
 Validating data ranges ensures all values fall within acceptable limits, avoiding invalid or erroneous data.
@@ -199,7 +204,7 @@ print(df)
 
 ---
 
-## **6.7 Handling Categorical Data**
+## **6.8 Handling Categorical Data**
 
 ### **Overview**
 Handling categorical data involves encoding non-numeric values, which is especially useful for machine learning models that require numerical input.
@@ -234,7 +239,7 @@ print(df_encoded)
 
 ---
 
-## **6.8 Handling Inconsistent Data**
+## **6.9 Handling Inconsistent Data**
 
 ### **Overview**
 Inconsistent data can result from typos, different formats, or various naming conventions. Handling inconsistencies ensures uniformity in the dataset.
@@ -271,7 +276,7 @@ print(df)
 
 ---
 
-## **6.9 Feature Engineering**
+## **6.10 Feature Engineering**
 
 ### **Overview**
 Feature engineering involves creating new features from existing ones to enhance the dataset and provide more insights.
