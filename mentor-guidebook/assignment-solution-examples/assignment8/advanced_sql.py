@@ -5,12 +5,10 @@ try: # SQL operations can raise exceptions!
     
     # The with statement is helpful, because it ensures that the connection
     # is closed at the end, even if an exception occurs
-    with sqlite3.connect("./db/lesson.db",isolation_level='IMMEDIATE') as conn:
-        # The isolation_level means that a transaction is automatically opened.
-        # SQLite will open one automatically by default, but only with the
-        # first write request.  
+    with sqlite3.connect("../db/lesson.db") as conn:
+        conn.execute("PRAGMA foreign_keys = 1")  
         cursor = conn.cursor()
-        conn.execute("PRAGMA foreign_keys = 1")
+        # TASK 1
         # This does a SELECT and a subquery
         stmt = """SELECT o.order_id, l.line_item_id, p.product_name FROM orders  
         o JOIN line_items l on o.order_id = l.order_id JOIN products p on 
@@ -21,6 +19,7 @@ try: # SQL operations can raise exceptions!
         for row in result:
             print(row)
 
+        # TASK 2
         # This retrieves the first 5 orders joined with the line_items and products tables, 
         # and aggregates (SUM) the quantity by the price to give the cost of each order
         stmt = """SELECT o.order_id, SUM(l.quantity * p.price) FROM orders o JOIN line_items l ON 
@@ -31,6 +30,7 @@ try: # SQL operations can raise exceptions!
         for row in result:
             print(row)
 
+        # TASK 3
         # This creates a new order with corresponding line_items.  First, we get the ids of
         # the customer, the employee, and the products.
         stmt = """SELECT customer_id FROM customers WHERE customer_name = \"Perez and Sons\";"""
@@ -78,6 +78,15 @@ try: # SQL operations can raise exceptions!
         result = cursor.fetchall()
         for row in result:
             print(row)
+
+        # TASK 4
+        stmt = """SELECT first_name, last_name, COUNT(order_id) as count FROM employees e JOIN orders o 
+        ON e.employee_id = o.employee_id GROUP BY e.employee_id HAVING COUNT(order_id) >5;"""
+        cursor.execute(stmt)
+        result = cursor.fetchall()
+        for row in result:
+            print(row)
+        
 except Exception as e:
     trace_back = traceback.extract_tb(e.__traceback__)
     stack_trace = list()

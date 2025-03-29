@@ -1,25 +1,29 @@
 Introduction to Databases and SQL**
 
-For this assignment, you create code in your python_homework folder (not Kaggle this time.)
+For this assignment, you create code in your python_homework/assignment7 folder.
 
 
 ## **Task 1: Create a New SQLite Database**
-1. Within your python_homework folder, create an `assignment7` branch.
-2. Within that folder, create a file `sql_intro.py`.
-2. Write code to connect to a new SQLite database, `./db/new.db` and to close the connection.
+1. Within your python_homework/assignment7 folder, create an `assignment7` branch.
+2. Make that folder the active directory.  Within that folder, create a file `sql_intro.py`.
+2. Write code to connect to a new SQLite database, `../db/magazines.db` and to close the connection.
 3. Execute the script and confirm the database file is created.  Note: All SQL statements should be executed within a try block, because they can raise exceptions.
 
 ---
 
 ## **Task 2: Define Database Structure**
-1. Add SQL statements to `sql_intro.py` that create the following tables:
-   - `Students`: Include fields for student ID, name, age, and major.
-   - `Courses`: Include fields for course ID, course name, and instructor name.
-   - `Enrollments`: Include fields for enrollment ID, student ID, and course ID.
-   The student ID and course ID in the Enrollments table should be foreign keys.  Each of these values must correspond to actual records in the Students and Courses tables.
-2. Add the SQLite Viewer to VSCode.
-3. Run the script to execute the queries.
-4. Open the `./db/new.db` file in VSCode to confirm that the tables are created.
+We have publishers that publish magazines.  Each publisher has a unique name, and so does each magazine.  There is a one-to-many relationship between publishers and magazines.  We also have subscribers, and each subscriber has a name and an address.  We have a many-to-many association between subscribers and magazines, because a subscriber may subscribe to several magazines, and a magazine may have many subscribers.  So, we have a join table called subscriptions.  The subscriptions table also stores the expiration_date (a string) for the subscription.  All the names, the address, and the expiration_date must be non-null.  
+
+1. Think for a minute.  There is a one-to-many relationship between publishers and magazines.  Which table has a foreign key? Where does the foreigh key point?  How about the subscriptions table: What foreigh keys does it have?
+
+2. Add SQL statements to `sql_intro.py` that create the following tables:
+   - `publishers`
+   - `magazines`
+   - `subscribers`
+   - `subscriptions`
+   Be sure to include the columns you need in each, with the right data types, with UNIQUE and NOT NULL constraints as needed, and with foreign keys as needed.  You can reuse column names if you choose, i.e. you might have a name column for publishers and a name column for magazines.  By the way, if you mess up this or the following steps, you can just delete `db/magazines.db`.
+
+3. Open the `db/magazines.db` file in VSCode to confirm that the tables are created.
 
 ---
 
@@ -29,33 +33,31 @@ For this assignment, you create code in your python_homework folder (not Kaggle 
    conn.execute("PRAGMA foreign_keys = 1")
    ```
    This line tells SQLite to make sure the foreign keys are valid.
-2. Add code to sql_intro.py to insert sample data into the `Students`, `Courses`, and `Enrollments` tables.  Don't forget to do a `conn.commit()` for your inserts!
-2. Run the revised script.
-3. Verify the data has been added by checking the database as displayed by VSCode.  Note: If you run your script again, an exception will be raised, because you are trying to reuse a primary key.  Primary keys in a table have to be unique.  You can delete `./db/new.db` before running your script to get around the problem.
+2. Create functions, one for each of the tables, to add entries.  Include code to handle exceptions as needed, and to ensure that there is no duplication of information.  The subscribers name and address columns don't have unique values -- you might have several subscribers with the same name -- but when creating a subscriber you should check that you don't already have an entry where BOTH the name and the address are the same as for the one you are trying to create.
+3. Add code to the main line of your program to populate each of the 4 tables with at least 3 entries.  Don't forget the `commit`!
+4. Run the program several times.  View the database to ensure that you are creating the right information, without duplication.
 
 ---
 
 ## **Task 5: Write SQL Queries**
-1. Write a query to retrieve all student information from the `Students` table.
-2. Write a query to find courses taught by a specific instructor.
-3. Write a query to retrieve student enrollments along with course names using a `JOIN`.
-4. Write a query to list students ordered by age.
-5. Add these queries to your script.  For each, print the result.  Note: You get the result by doing a
-   ```
-   result=cursor.fetchall()
-   ```
-   This returns an iterable collection of tuples, one for each row.  An interable collection works like a list.  You should loop through the collection and print each row.  Alternately, you can do a `cursor.fetchone()` to get the first (or next) row from the result.
+1. Write a query to retrieve all information from the subscribers table.
+2. Write a query to retrieve all magazines sorted by name.
+3. Wite a query to find magazines for a particular publisher, one of the publishers you created.  This requires a `JOIN`. 
+4. Add these queries to your script.  For each, print out all the rows returned by the query.
 
 ## **Task 6: Read Data into a DataFrame**
 
-1. While still within the python_homework directory, create a program, `sql_intro_2.py`.
-2. The program should read all the orders for all the customers, to get all the products that each as ordered into a DataFrame.  The lesson shows how.
-3. As some customers may have ordered the same product in several different orders, you want to combine the rows for these different orders.  You use the group_by() operation on the DataFrame to combine rows where the product_name and the customer_name are the same.
-4. With the group_by(), use count() to show how many times each customer ordered a given product.
-5. Sort the DataFrame by the order_id column.
-6. Print out the last 20 rows of the resulting DataFrame.
+You will now use Pandas to create summary data from the db/lesson.db database you populated as part of the lesson.  We want to find out how many times each product has been ordered, and what was the total price paid by product.
 
-As we'll learn in the next lesson, the ordering, grouping, and count operations can be done in SQL, more efficiently than in Pandas.  The key concepts of pandas and SQL overlap very strongly.
+1. While still within the python_homework/lesson7 directory, create a program, `sql_intro_2.py`.
+2. Read data into a DataFrame, as described in the lesson.  The SQL statement should retrieve the line_item_id, quantity, product_id, product_name, and price from a JOIN of the line_items table and the product table. Hint: Your `ON` statement would be `ON line_items.product_id = products.product_id`.
+3. Print the first 5 lines of the resulting DataFrame.  Run the program to make sure this much works.
+4. Add a column to the DataFrame called "total".  This is the quantity times the price.  (This is easy: df[total] = df[quantity] * df[price]).  Print out the first 5 lines of the DataFrame to make sure this works.
+5. Add groupby() code to group by the product_id.  Use an agg() method that specifies 'count' for the line_item_id column, 'sum' for the total column, and 'first' for the 'product_name'.  Print out the first 5 lines of the resulting DataFrame.  Run the program to see if it is correct so far.
+6. Sort the DataFrame by the product_name column.
+7. Add code to write this DataFrame to a file `order_summary.csv`, which should be written in the assignment7 directory.  Verify that this file is correct.
+
+As we'll learn in the next lesson, the ordering, grouping, count, and sum operations can be done in SQL, more efficiently than in Pandas.  The key concepts of pandas and SQL overlap very strongly.
 
 ---
 

@@ -3,7 +3,7 @@
 
 ## **Lesson Overview**
 
-**Learning objective:** Students will gain foundational knowledge of databases and SQL by learning to create, populate, and query a SQLite database using Python. They will also understand how to manage database connections, commit changes, and use advanced SQL techniques.
+**Learning objective:** Students will gain foundational knowledge of databases and SQL by learning to create, populate, and query a SQLite database using Python. They will also understand how to manage database connections, commit changes, and use advanced SQL techniques.  They will also access the database using Pandas.
 
 ### **Topics:**
 
@@ -12,15 +12,17 @@
 3. Defining the Database Structure
 4. Populating Tables with Data
 5. Writing SQL Queries
-6. The UPDATE Statement
-7. The Delete Statement
-8. SQL Query Practice
-9. SQL from Pandas
-10. (Optional) More SQL Practice
+6. Creating Entries with Foreign Keys
+7. More complicated queries, incuding JOINs
+8. The UPDATE Statement
+9. The Delete Statement
+10. SQL Query Practice
+11. SQL from Pandas
+12. (Optional) More SQL Practice
 
 ---
 
-## What SQL Is, and Why it is Used
+## **7.1 What SQL Is, and Why it is Used**
 
 SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheat.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite, at bottom, has really only TEXT, NUMERIC, INTEGER, REAL, or BLOB.  One can compare this with no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema can seem like a straightjacket, but it is really more a set of rails, organizing data into a structured form.
 
@@ -28,11 +30,16 @@ Read the following introduction: <https://www.theodinproject.com/lessons/databas
 
 There are two important words left out of that introduction: Association and Transaction.
 
+### **Associations**
+
 An association exists between tables if one table has a foreign key that points to the other.  Consider the following cases:
 
 1. An application has a users table and a user_profiles table.  Each user_profiles record has a foreign key, which is the primary key of a record in the users table.  This is a one-to-one association.
 2. An application has blogs.  Each blog has a series of posts.  The application might have a blogs table and a posts table.  Each entry in the posts table would have a foreign key for a blog, indicating the blog to which it belongs.  This is a one-to-many association, as one blog has many posts.
-3. A magazine publisher has magazines and subscribers.  Each subscriber may subscribe to several magazines, and each magazine may have many subscribers.  Now we have a problem.  We can't put a list of subscribers into a magazine record. Relational database records can't contain lists.  For a given magazine, we could create one record for each subscriber, but we'd be duplicating all the information that describes the magazine many times over.  Similarly, there is no way for the subscribers table to contain records for each magazine for each subscriber.  So, you need a table in the middle, sometimes called a join table.  In this case, the join table might be subscriptions.  Each subscription record has two foreign keys, one for the magazine and one for the subscriber.  This is a many-to many association.
+3. A magazine publisher has magazines and subscribers.  Each subscriber may subscribe to several magazines, and each magazine may have many subscribers.  Now we have a problem.  
+We can't put a list of subscribers into a magazine record. Relational database records can't contain lists.  For a given magazine, we could create one record for each subscriber, but we'd be duplicating all the information that describes the magazine many times over.  Similarly, there is no way for the subscribers table to contain records for each magazine for each subscriber.  So, you need a table in the middle, sometimes called a join table.  In this case, the join table might be subscriptions.  Each subscription record has two foreign keys, one for the magazine and one for the subscriber.  This is a many-to many association.
+
+### **Transactions**
 
 A transaction is a write operation on an SQL database that guarantees consistency.  Consider a banking operation.  A user wants to transfer money from one account to another.  The sequence of SQL operations is as follows (this is pseudocode of course):
 
@@ -46,7 +53,14 @@ The transaction maintains consistency.  When the read occurs, that entry is lock
 
 Relational databases's strength, by comparision with no-SQL databases, is the efficient handing of structured and interrelated data and transactional operations on that data.
 
-When a table is defined in the schema, **constraints** on the values may also be specified.  One constraint comes from the datatype of the column: you can't put a string in an integer column, etc.  In addition, there may be a NOT NULL constraint, which means that whenever a record is created or updated, that column in the record must have a value.  There may be a UNIQUE constraint: You wouldn't want several users to have the same ID for example.  And, there may be a FOREIGN KEY constraint.  In the blog example above, each post must belong to a blog, meaning that the post record has, as a foreign key, the blog's primary key.  Otherwise you'd have a post that belonged to no blog, a worthless situation.
+### **Constraints**
+
+When a table is defined in the schema, **constraints** on the values may also be specified.
+
+- Datatype constraints: One constraint comes from the datatype of the column: you can't put a string in an integer column, etc.  
+- NOT NULL constraint:  When present, it means that whenever a record is created or updated, that column in the record must have a value.  
+- UNIQUE constraint: You wouldn't want several users to have the same ID for example.  
+- FOREIGN KEY constraint.  In the blog example above, each post must belong to a blog, meaning that the post record has the blog's primary key as a foreign key.  Otherwise you'd have a post that belonged to no blog, a worthless situation.
 
 If you try to create a record that doesn't comply with constraints, or update one in violation of constraints, you get an exception.
 
@@ -60,10 +74,13 @@ SQLite, by default, does not turn on the foreign key constraint, but in the exam
 
 SQLite is a file-based database, meaning the database itself is stored in a file on disk. Python's `sqlite3` module allows easy interaction with SQLite databases.  It is built into Python, so there is nothing more to install.
 
-### **Steps to Create a Database:**
+### **Creating a Database:**
 
-1. Open your code editor within the python_homework folder.  Create a new Python script file called `lesson07_a.py`.
-2. Use the `sqlite3.connect()` method to create or connect to a new SQLite database. SQLite automatically creates the database file if it does not exist.
+The `sqlite3.connect()` statement in Python creates a database if it does not exist.  Then it connects to that database.
+
+1. Open VSCode for your `python_homework` folder.  As you will create files as part of the lesson, create your `assignment7` branch now.
+2. Open your code editor within your `python_homework/assignment7` folder.  Create a new Python script file called `school_a.py`.  In your VSCode terminal, `cd` to the assignment7 folder.
+3. Add the following code to that program to create or connect to a new SQLite database.
 
 ### **Example Code:**
 
@@ -71,13 +88,14 @@ SQLite is a file-based database, meaning the database itself is stored in a file
 import sqlite3
 
 # Connect to a new SQLite database
-with  sqlite3.connect("./db/school.db") as conn:  # Create the file here, so that it is not pushed to GitHub!
+with  sqlite3.connect("../db/school.db") as conn:  # Create the file here, so that it is not pushed to GitHub!
     print("Database created and connected successfully.")
 
-# The with statement closes the connection at the end of that block.  You could close it explicitly with conn.close(), but in this case
-# the with statement takes care of that.
+# The "with" statement closes the connection at the end of that block.  You could close it explicitly with conn.close(), but in this case
+# the "with" statement takes care of that.
 
 ```
+Run the program to create a database.
 
 **Outcome:**
 
@@ -91,7 +109,7 @@ Databases store structured data in tables. SQL queries allow you to define the s
 
 ### **Steps:**
 
-1. Use SQL `CREATE TABLE` queries to define the structure of your database.  This code is added to `lesson07_a.py`.  **Note** It is best to use `CREATE TABLE IF NOT EXISTS`, as in the example code that follows this section.  Otherwise your code will fail the second time you run it, as the table already exists.
+1. Use SQL `CREATE TABLE` statements to define the structure of your database.  This code is added to `school_a.py`.  **Note** It is best to use `CREATE TABLE IF NOT EXISTS`, as in the example code that follows this section.  Otherwise your code will fail the second time you run it, as the table already exists.
 2. Execute these queries within your Python script using the `execute()` method of a database cursor.
 
 **Tables:**
@@ -106,14 +124,14 @@ Databases store structured data in tables. SQL queries allow you to define the s
 import sqlite3
 
 # Connect to the database
-with sqlite3.connect("./db/school.db") as conn:
+with sqlite3.connect("../db/school.db") as conn:
     cursor = conn.cursor()
 
     # Create tables
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Students (
         student_id INTEGER PRIMARY KEY,
-        name TEXT NOT NULL,
+        name TEXT NOT NULL UNIQUE,
         age INTEGER,
         major TEXT
     )
@@ -122,7 +140,7 @@ with sqlite3.connect("./db/school.db") as conn:
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Courses (
         course_id INTEGER PRIMARY KEY,
-        course_name TEXT NOT NULL,
+        course_name TEXT NOT NULL UNIQUE,
         instructor_name TEXT
     )
     """)
@@ -144,7 +162,7 @@ with sqlite3.connect("./db/school.db") as conn:
 
 1. What kind of association exists between Students and Enrollments?
 
-2. What kine of association exists between Students and Courses?
+2. What kind of association exists between Students and Courses?
 
 Answers:
 
@@ -160,8 +178,8 @@ Populating tables with data helps simulate real-world scenarios, allowing you to
 
 ### **Steps:**
 
-1. Create a file, `lesson07_b.py`. Use SQL `INSERT INTO` queries to add data to the tables.
-2. Execute the queries within your Python script.  Add another `with` block, below the one that created the tables.
+1. Create a file in the assignment7 folder called `school_b.py`. Within it, connect to the database, create a curson, and use SQL `INSERT INTO` queries to add data to the tables.
+2. Add a commit() statement
 
 ### **Example Code:**
 
@@ -180,36 +198,68 @@ with sqlite3.connect("./db/school.db") as conn:
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Math 101', 'Dr. Smith')")
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('English 101', 'Ms. Jones')") 
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Chemistry 101', 'Dr. Lee')") 
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (1, 1)") 
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (1, 2)") 
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (2, 1)") 
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (3, 3)") 
 
     conn.commit() 
     # If you don't commit the transaction, it is rolled back at the end of the with statement, and the data is discarded.
     print("Sample data inserted successfully.")
 ```
-The INSERT statement can insert several rows in one statement, as follows:
+Note that you do not have to specify the primary keys (student_id and course_id), although you can.  These are chosen for you, and the primary key column will never be null and will always have unique values.  If you do specify the primary keys, they have to be unique -- there can be no record in that table with the same primary key, or you get an exception.  You notice that there is no 'begin' statement for the commit.  By default, SQLite begins a transaction for you automatically.
+
+At this point, you should install the SQLite Viewer plugin for your VSCode.  Once you've done that, open the db/school.db file in VSCode, and the tables you have created are displayed, along with any data you have added.
+
+The INSERT statement can insert several rows in one statement.  You specify multiple sets of values for each of the columns, as follows (you don't need to add this to your program):
 ```python
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (1, 1), (1,2), (2,1), (3,3);")
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Alice', 20, 'Computer Science'), ('Bob', 22, 'History')")
 ```
-For the column names you specify, you can specify multiple sets of values.
+
+Now, you'd like to insert into the Enrollments table as well -- but, each enrollment record has foreign keys, which are primary keys from the Students and Courses tables.  You didn't choose the primary keys above, so you don't know what they are.  You'll solve that problem below.
 
 ### Check for Understanding
 
-1. What would happen if you tried to execute the following line inside the `with` block above?
+1. What happens if you try to run your program twice?
+
+Answer:
+
+1. You get an exception!  Student and course names must be unique.  You need to handle the exceptions!  So change your code as follows:
+
+But, you still get an exception, for the next Insert.  You need to add the try/except for each of the insert statements.  This seems to violate the DRY principle (Do not Repeat Yourself).  You solve this by creating functions, as follows
 
 ```python
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (1, 123)")
+import sqlite3 
+
+# Connect to the database
+
+def add_student(cursor, name, age, major):
+    try:
+        cursor.execute("INSERT INTO Students (name, age, major) VALUES (?,?,?)", (name, age, major))
+    except sqlite3.IntegrityError:
+        print(f"{name} is already in the database.")
+
+def add_course(cursor, name, instructor):
+    try:
+        cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES (?,?)", (name, instructor))
+    except sqlite3.IntegrityError:
+        print(f"{name} is already in the database.")
+
+with sqlite3.connect("../db/school.db") as conn:
+    conn.execute("PRAGMA foreign_keys = 1") # This turns on the foreign key constraint
+    cursor = conn.cursor()
+
+    # Insert sample data into tables
+
+    add_student(cursor, 'Alice', 20, 'Computer Science')  
+    add_student(cursor, 'Bob', 22, 'History')
+    add_student(cursor, 'Charlie', 19, 'Biology')
+    add_course(cursor, 'Math 101', 'Dr. Smith')
+    add_course(cursor, 'English 101', 'Ms. Jones')
+    add_course(cursor, 'Chemistry 101', 'Dr. Lee')
+
+    conn.commit() 
+    # If you don't commit the transaction, it is rolled back at the end of the with statement, and the data is discarded.
+    print("Sample data inserted successfully.")
 ```
 
-2. What happens if you try to run your program twice?
-
-Answers: 
-
-1. The foreign key constraint is on!  123 is not a valid course_id, because it does not correspond to any course record.  You'd get an exception.  The exception happens when the INSERT statement runs, that is, before the commit statement is reached.
-
-2. If you try running the program twice, you get an exception.  You can't create multiple records in a given table with the same primary key.  Primary keys have to be unique.
+The code above uses a **parameterized statement**.  You have `?` markers in the original SQL.  You pass a tuple as a second parameter for the `cursor.execute()`, and the values from the tuple are plugged into the statement in place of the `?` markers.
 
 ## **7.5 Writing SQL Queries**
 
@@ -231,23 +281,122 @@ SELECT * FROM Students;
 SELECT * FROM Courses WHERE instructor_name = 'Dr. Smith';
 ```
 
+- Find only the student_ids and names from the Student table:
+
+```sql
+SELECT student_id, name FROM Students;
+```
+
+- List students ordered by age:
+
+```sql
+SELECT * FROM Students ORDER BY age;
+```
+
+- Find the students of a given age majoring in English:
+
+```sql
+SELECT * from Students WHERE age = 22 AND major = 'History';
+```
+
+Within Python, SQL SELECT statements are executed like the INSERT statements, but you also need to retrieve the results.  Add the following to your school_b.py program:
+
+```python
+    cursor.execute("SELECT * FROM Students WHERE name = 'Alice'")
+    result = cursor.fetchall()
+    for row in result:
+        print(row)
+```
+When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() creates an iterable connection of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Alice", and the first element in the tuple is the student_id.
+
+## **7.6 Adding Entries with Foreign Keys**
+
+Now you are ready to add enrollments, because you can resolve the primary keys that are used as foreign keys in the Enrollments table.  The steps are:
+
+1. Find the student_id for the student.
+
+2. Find the course_id for the course.
+
+3. Insert the enrollment record.
+
+You are going to do this for various students and courses, so again you create a function.  Add this code to school_b.py:
+
+```python
+def enroll_student(cursor, student, course):
+    cursor.execute("SELECT * FROM Students WHERE name = ?", (student,)) # For a tuple with one element, you need to include the comma
+    results = cursor.fetchall()
+    if len(results) > 0:
+        student_id = results[0][0]
+    else:
+        print(f"There was no student named {student}.")
+        return
+    cursor.execute("SELECT * FROM Courses WHERE course_name = ?", (course,))
+    results = cursor.fetchall()
+    if len(results) > 0:
+        course_id = results[0][0]
+    else:
+        print(f"There was no course named {course}.")
+        return
+    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (?, ?)", (student_id, course_id))
+
+    ... # And at the bottom of your "with" block
+
+    enroll_student(cursor, "Alice", "Math 101")
+    enroll_student(cursor, "Alice", "Chemistry 101")
+    enroll_student(cursor, "Bob", "Math 101")
+    enroll_student(cursor, "Bob", "English 101")
+    enroll_student(cursor, "Charlie", "English 101")
+    conn.commit() # more writes, so we have to commit to make them final!
+```
+
+Try this out, and then view the database in VSCode to see if the entries are created.  You may have to close your view of `school.db` and open it again to see your changes.
+
+You could add exception handling, but it is not clear which exceptions you might get at this point, so it's not easy to add appropriate exception handling.
+
+### Check for Understanding
+
+1. What would happen if you tried the following:
+    ```python
+    cursor.execute("INSERT INTO Enrollments (student_id, course_id) (95, 43)")
+    ```
+
+2. Try running school_b.py again, and check what happens with Enrollments.  You get duplicate records!  Duplicate, that is, except for the enrollment_id.  How could you prevent this?
+
+Answer:
+
+1. The foreign key constraint is ON!  You would get an exception.  There is no record in the Students table with a student_id of 95.  There is no record in the Courses table with a course_id of 43, so the foreign key constraint prevents this invalid record from being created.
+
+2. You can't add another UNIQUE constraint to fix this problem, because you need to reuse the course_id and student_id values in multiple records.  But, you can check to see if the record already exists before you do the insert, as follows:
+
+    ```python
+    cursor.execute("SELECT * FROM Enrollments WHERE student_id = ? AND course_id = ?", (student_id, course_id))
+    results = cursor.fetchall()
+    if len(results) > 0:
+        print(f"Student {student} is already enrolled in course {course}.")
+        return
+    ```
+    Try this out!
+
+## **7.7 More Complicated Queries**
+
 In the WHERE clause, you can use various comparison operators such as `< > <= >= <>`.  The `<>` means not equals.  You can also do math, such as `quantity * price`.  And, you can use the LIKE operator to find strings with the `%` sign used as a wildcard.  Fir example, to find all the math courses, you could do this:
 ```sql
 SELECT * FROM Courses WHERE course_name LIKE "math%";
 ```
 ### Joins
 
-A join is used within a SELECT statement to combine several tables.  The records returned from the SELECT include columns from both tables.  Joins use an ON clause to pair up the entries from each table:
+A join is used within a SELECT statement to combine two or more tables.  The records returned from the SELECT include columns from both tables.  Joins use an ON clause to pair up the entries from each table.  The following SELECT gets the pairs of student name and course name, according to Enrollments, which is the join table.
 ```sql
-SELECT customers.customer_name, orders.order_id FROM customers JOIN orders ON customers.customer_id = orders.customer_id;
+SELECT Students.name, Course.course_name FROM Students JOIN Enrollments ON Students.student_id = Enrollments.student_id JOIN Courses ON Enrollments.course_id = Courses.course_id
 ```
-The above statement gives a list of customers along with their orders.  As there is a one-to-many association between customers and orders, there will be multiple rows for each customer, with one row for each order belonging to that customer.  There are two customer_id columns in the combined table, because the orders table contains the customer_id as a foreign key, so the join statement has to indicate which one we want, or you will get an error.  We can use `AS` for a shortcut:
+The statement creates a combined row.  For each Student record, the Enrollments for that student are retrieved, and a combined record is created for any matches that are found.  The `ON` clause gives the matching logic.  Then, for each of these combined records, the corresponding Course record is retrieved, and added to the row.  The SELECT returns the name from the Students table and course_name from the Course table.  We can use 'AS' to save typing:
+
 ```sql
-SELECT c.customer_name, o.order_id FROM customers AS c JOIN orders AS o on c.customer_id = o.customer_id;
+SELECT s.name, c.course_name FROM Students AS s JOIN Enrollments AS e ON s.student_id = e.student_id JOIN Courses AS c ON e.course_id = c.course_id;
 ```
 And, one can even leave out the `AS`:
 ```sql
-SELECT c.customer_name, o.order_id FROM customers c JOIN orders o on c.customer_id = o.customer_id;
+SELECT s.name, c.course_name FROM Students s JOIN Enrollments e ON s.student_id = e.student_id JOIN Courses c ON e.course_id = c.course_id;
 ```
 
 Suppose you want to include customers that have done no orders.  You do a LEFT JOIN (because the customer table is on the left in the join statement.)
@@ -265,42 +414,20 @@ JOIN Students ON Enrollments.student_id = Students.student_id
 JOIN Courses ON Enrollments.course_id = Courses.course_id;
 ```
 
-- List students ordered by age:
-
-```sql
-SELECT * FROM Students ORDER BY age;
-```
-
 ### **Check for Understanding**
 
-1. We see that the JOIN statement for customers and orders has an ON clause with customer.customer_id = orders.customer_id.  Why doesn't it use orders.order_id?
+1. We see that the JOIN statement for Students and Enrollments has an ON clause with Students.student_id = Enrollments.student_id.  Why doesn't it use Enrollments.enrollment_id?
 
 Answer:
 
-2. The order_id doesn't correspond to anything in the customer table.  You have to use the foreign key, customer_id, from the orders table.  An ON cause typically combines a primary key (customer.customer_id) with a foreign key (orders.customer_id).
+2. The enrollment_id doesn't correspond to anything in the Students table.  You have to use the foreign key, student_id, from the Enrollments table.  An ON cause typically combines a primary key (Students.student_id) with a foreign key (Enrollments.student_id).  By the way, the primary key doesn't have to have the same name as the foreign key.  If the primary key in the Students table were named `id`, you'd do `ON Students.id = Enrollments.student_id`.
 
 ### **Example Code:**
 
 Of course, any of the SQL above can be executed from Python.
 
-```python
-import sqlite3
 
-# Connect to the database
-conn = sqlite3.connect("./db/school.db")
-cursor = conn.cursor()
-
-# Execute and display query results
-cursor.execute("SELECT * FROM Students")
-print(cursor.fetchall())
-
-cursor.execute("SELECT * FROM Courses WHERE instructor_name = 'Dr. Smith'")
-print(cursor.fetchall())
-
-conn.close()  # In this case the with statement is not being used, so the connection must be closed explicitly
-```
-
-## **7.6 The UPDATE Statement**
+## **7.8 The UPDATE Statement**
 
 The UPDATE SQL statement changes one or more existing rows.  You specify the rows you want to change with a WHERE clause, like you would use in a SELECT statement.
 
@@ -314,7 +441,7 @@ UPDATE products price=price * 1.1;
 ```
 This statement raises all the prices by 10%.  As there is no WHERE statement, every record is changed.
 
-## **7.7 The DELETE Statement**
+## **7.9 The DELETE Statement**
 
 The DELETE Statement deletes one or more existing rows.  For example, the following statement deletes all product records if the price is less than 1.00:
 
@@ -327,13 +454,13 @@ If you leave off the WHERE clause, it deletes every record in the table!
 
 This is a very brief and incomplete summary of the SQL language.  The SQLBolt tutorial mentioned below gives more complete instruction, and a very good reference is available here: <https://www.w3schools.com/sql/default.asp>.  Some advanced topics, such as aggregation and subqueries, are discussed in the next lesson.
 
-## **7.8 SQL Query Practice**
+## **7.10 SQL Query Practice**
 
 Your python_homework folder contains a program called `load_db.py`.  Take a look at its contents.  It creates a series of tables, for employees, customers, orders, products, and order_details.  Each order is associated with a customer and an employee.  For each order, there are line_items associated with the order, one line item for each product comprising the order.  You'll see the schema created at the top of the file.  Then, the file uses pandas to load data for each table from csv files into the database.  The resulting database is stored as `./db/lesson.db`.
 
-Run the `load_db.py` program to create and populate the database.  You can run it again as needed to restore the database to its initial state.  Next, run the `sqlcommand.py` program.  This prompts you with a command line you can use to enter SQL statements.  (Each statement must end with a semicolon.)  Experiment with various SELECT, INSERT, UPDATE, and DELETE statements.  Have a look at the code in `sqlcommand.py` to see how it works.
+Change the directory to the python_homework folder and run the `load_db.py` program to create and populate the database.  You can run it again as needed to restore the database to its initial state.  Next, run the `sqlcommand.py` program.  This prompts you with a command line you can use to enter SQL statements.  (Each statement must end with a semicolon.)  Experiment with various SELECT, INSERT, UPDATE, and DELETE statements.  Have a look at the code in `sqlcommand.py` to see how it works.
 
-## **7.9 SQL from Pandas**
+## **7.11 SQL from Pandas**
 
 How does a data analyst use SQL?
 
@@ -352,9 +479,9 @@ with sqlite3.connect("./db/lesson.db") as conn:
 This loads a dataframe from the results of a SELECT statement.  You then have access to all the statistical power of pandas.  In this case, we get a dataframe that lists all the customer names, all the orders, and the names of all the product that were ordered.  Note that there is a many-to-many association between orders and products, in that an order may have many products, but there may be many orders for a given product. The line_items table acts as a join table for orders and products.
 
 
-## **7.10 Optional: More Practice**
+## **7.12 Optional: More Practice**
 
-An excellent tutorial on SQL is available at the following link: <https://sqlbolt.com/>.
+An excellent tutorial on SQL is available at the following link: <https://sqlbolt.com/>.  This tutorial is optional, but it is **strongly recommended, including the More Topics section**.
 
 ### **Summary**
 In this lesson, you learned:
@@ -364,4 +491,6 @@ In this lesson, you learned:
 3. How to populate tables with sample data.
 4. How to write SQL queries to retrieve and analyze data.
 5. How to commit changes and close the database connection.
-6. By mastering these techniques, you can efficiently interact with databases using Python. For further exploration, refer to the SQLite Documentation and Python’s sqlite3 library documentation.
+6. How to modify and delete data.
+7. How to access data from Pandas.
+8. By mastering these techniques, you can efficiently interact with databases using Python. For further exploration, refer to the SQLite Documentation and Python’s sqlite3 library documentation.

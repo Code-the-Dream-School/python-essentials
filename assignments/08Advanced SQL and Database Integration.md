@@ -12,7 +12,7 @@ Students will deepen their understanding of SQL by learning advanced techniques 
 
 ## **Assignment Instructions**
 
-You create the code for this assignment in your python_homework folder.  Be sure to create an `assignment8` git branch before you start.  As usual, mark the code that completes each task with a comment line.
+You create the code for this assignment in your python_homework/assignment8 folder.  You may want to have two VSCode terminal sessions.  In one, you have changed directories to `assignment8`.  This is the session where you will run your code.  In the other terminal session, you will run `sqlcommand.py` from the `python_homework` folder.  You need to have the working directory set differently, so that each program will be able to find `db/lesson.db`.  Be sure to create an `assignment8` git branch before you start.  As usual, mark the code that completes each task with a comment line.
 
 ### **Preparation and Practice**
 
@@ -74,7 +74,7 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
 ### **Task 4: Aggregation with HAVING**
 
 1. **Problem Statement**:  
-   Find all employees associated with more than 5 orders.  You need to combine GROUP BY, COUNT, and HAVING.
+   Find all employees associated with more than 5 orders.  You want the first_name, the last_name, and the count of orders.  You need to do a `JOIN` on the employees and orders tables, and then use GROUP BY, COUNT, and HAVING.
 
 2. **Deliverable**:  
    - Get it working in sqlcommand.
