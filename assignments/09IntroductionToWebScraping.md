@@ -38,11 +38,9 @@ You are going to find where in the HTML page the data you want is located.
 
 2. Open your browser developer tools to show the HTML elements.  For Chrome, this is `shift-ctrl-J`.
 
-3. In your python_homework folder, cd to the assignment9 folder.  Create a file called `get_books.py`.  As you use the browser developer tools to traverse the DOM for this web page, you'll record some information in comments in this file, as you'll need the information to write your program logic.
+3. Find the HTML element for a single entry in the search results list.  This is a little tricky.  When you select an element in the Chrome developer tools, that part of the web page is highlighted.  But, that typically only gets you to the main `div`.  There is a little arrow next to that div in the developer tools element window, and you click on that to open it up to show the child elements.  Then, you select the element that corresponds to the search results area.  Continue in this way, opening up divs or other containers and selecting the one that highlights the area you want.  Eventually, you'll get to the first search result.  Hint: You are looking for an `li` element, because this is an element in an unordered list.  Note the values for the class attribute of this entry.  You'll want to save these in some temporary file, as your program will need them.
 
-4. Find the HTML element for a single entry in the search results list.  This is a little tricky.  When you select an element in the Chrome developer tools, that part of the web page is highlighted.  But, that typically only gets you to the main `div`.  There is a little arrow next to that div in the developer tools element window, and you click on that to open it up to show the child elements.  Then, you select the element that corresponds to the search results area.  Continue in this way, opening up divs or other containers and selecting the one that highlights the area you want.  Eventually, you'll get to the first search result.  Hint: You are looking for an `li` element, because this is an element in an unordered list.  Note the values for the class attribute of this entry.  Save this information in a comment in `get_books.py`, so that you have it for the next task.
-
-4. Within that `li` element, find the element that stores the title.  Note the tag type and the class value.  Your program will need this information as well, so save it in a comment.
+3. Within that element, find the element that stores the title.  Note the tag type and the class value.  Your program will need this value too, so save it too.
 
 4. Within the search results `li` element, find the element that stores the author.  Hint: This is a link.  Note the class value and save it.  Some books do have multiple authors, so you'll have to handle that case.
 
@@ -50,11 +48,13 @@ You are going to find where in the HTML page the data you want is located.
 
 ### **Task 3: Write a Program to Extract this Data**
 
-1. `get_books.py`. The program should import from selenium and webdriver_manager, as shown in your lesson.  You also need pandas and json.
+1. Within the assignment9 diretory of your python_homework folder, create a program called `get_books.py`. The program should import `requests`, `BeautifulSoup`, and `pandas`.
 
-2. Add code to load the web page given in task 2.
+2. Your program should then request the web page for the URL given in Task 2.
 
-3. Find all the `li` elements in that page for the search list results.  You use the class values you stored in task 2 step 3.  Also use the tag name when you do the find, to make sure you get the right elements.
+3. Your program should then parse the web page with BeautifulSoup.
+
+4. Then, your program should find all the `li` entries in that page for the search list results.  You use the class values you stored in task 2 step 3.
 
 5. Within your program, create an empty list called `results`.  You are going to add `dict` values to this list, one for each search result.
 
@@ -67,12 +67,11 @@ You are going to find where in the HTML page the data you want is located.
 **For Further Thought**  You are getting the search results from the first page of the search results list.  How would you get all the search results from all the pages?  How can you make the program do this regardless of how many pages you might have?  **Optional:** Change your program to page through the search results so as to get all of the results.  However! You need to make sure your program pauses between pages.  Fast screen scraping, where many requests are sent in short order, is an abuse of the privilege.
 
 ### **Task 4: Write out the Data**
-
 Modify your program to do the following:
 
-1. Write the DataFrame to a file called `get_books.csv`, within the assignment9 folder.  Examine the file to see if it looks right.  As books and author names have commas in them, you should use the vertical bar `|` as a separator.
+1. Write the DataFrame to a file called `get_books.csv`, within the assignment9 folder.  Examine the file to see if it looks right.
 
-2. Write the `results` list out to a file called `get_books.json`, also within the assignment9 folder.  You should write it out in JSON format, with indents.  Examine the file to see if it looks right.
+2. Write the `results` list out to a file called `get_books.json`, also within the assignment9 folder.  You should write it out in JSON format.  Examine the file to see if it looks right.
 
 
 ### **Task 5: Ethical Web Scraping**
@@ -94,17 +93,15 @@ Understand the importance of ethical web scraping and `robots.txt` files.
 **Goal**:  
 Extract a web page section and store the information.
 
-1. Use your browser developer tools to view this page: [https://owasp.org/www-project-top-ten/].  You are going to extract the top 10 security risks reported there.  Figure out how you will find them.
+1. Within your python_homework/assignment9 directory, write a script called `see_also.py` to find the **"See also"** section of the Wikipedia page for screen scraping.  You'll have to use your browser developer tools to figure out how to find that section.
 
-2. Within your python_homework/assignment9 directory, write a script called `owasp_top_10.py`.  Use selenium to read this page.
+2. Once you have the tag for this section within your soup, Use the BeautifulSoup prettify() method to format the contents of that tag.  Print it out, and also write the resulting string to a file in the assignment9 folder called `see_also.html`.  Verify that this file appears correct.
 
-3. Find each of the top 10 vulnerabilities.  Hint: You will need XPath.  For each of the top 10 vulnerabilites, keep the vulnerability title and the href link in a dict.  Accumulate these dict objects in a list.
-
-4. Print out the list to make sure you have the right data.  Then, add code to the program to write it to a file called `owasp_top_10.csv`.  Verify that this file appears correct.
-
-5. Create a file, `challenges.txt`, also within your lesson9 directory.  In this file, describe any challenges you faced in completing this assignment and how you resolved them.
+3. Create a file, `challenges.txt`, also within your lesson9 directory.  In this file, describe any challenges you faced in completing this assignment and how you resolved them.
 
 ---
+
+
 
 ### Submit Your Assignment on GitHub**  
 
@@ -128,8 +125,9 @@ Extract a web page section and store the information.
 
 ## **Resources**
 
-- [Selenium Documentation](https://www.selenium.dev/documentation/webdriver/)
+- [BeautifulSoup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Python Requests Library](https://docs.python-requests.org/en/latest/)
 - [MDN Web Docs: Understanding the DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
-- [OWASP robots.txt](https://owasp.org/robots.txt)
+- [Wikipedia Robots.txt](https://en.wikipedia.org/robots.txt)
 
 ---  
