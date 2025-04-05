@@ -51,7 +51,7 @@ We have publishers that publish magazines.  Each publisher has a unique name, an
 
 You will now use Pandas to create summary data from the `../db/lesson.db` database you populated as part of the lesson.  We want to find out how many times each product has been ordered, and what was the total price paid by product.
 
-1. While still within the python_homework/lesson7 directory, create a program, `sql_intro_2.py`.
+1. While still within the `python_homework/assignment7` directory, create a program, `sql_intro_2.py`.
 2. Read data into a DataFrame, as described in the lesson.  The SQL statement should retrieve the line_item_id, quantity, product_id, product_name, and price from a JOIN of the line_items table and the product table. Hint: Your `ON` statement would be `ON line_items.product_id = products.product_id`.
 3. Print the first 5 lines of the resulting DataFrame.  Run the program to make sure this much works.
 4. Add a column to the DataFrame called "total".  This is the quantity times the price.  (This is easy: `df['total'] = df['quantity'] * df['price']`.)  Print out the first 5 lines of the DataFrame to make sure this works.

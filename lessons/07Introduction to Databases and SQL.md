@@ -5,6 +5,14 @@
 
 **Learning objective:** Students will gain foundational knowledge of databases and SQL by learning to create, populate, and query a SQLite database using Python. They will also understand how to manage database connections, commit changes, and use advanced SQL techniques.  They will also access the database using Pandas.
 
+## **Setup**
+
+An additional package is needed for this lesson, but ONLY ON WINDOWS.  Do not install this package if you are on a Mac or Linux, because on those platforms, the capability is part of the Python base.  If you are on Windows, then within the VSCode terminal of your `python_homework` folder, type:
+
+```bash
+pip install pyreadline3
+```
+
 ### **Topics:**
 
 1. What SQL Is, and Why it is Used

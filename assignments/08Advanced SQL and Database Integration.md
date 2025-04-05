@@ -30,9 +30,9 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
    For each of the first 5 orders (as ordered by order_id), find the each of the product names for the order.  Return a list that includes the order_id, the line_item_id, and the product name.  There are several steps here.  You need a subquery to retrieve the order_id for the first 5 orders.  In this subquery, you use `ORDER BY order_id` and `LIMIT 5`.  In the main query, you need to select the order_id, line_item_id, and product_name from the orders table, the line_items table, and the products table.  Then you need a WHERE clause: `WHERE o.order_id IN (...)`.  The subquery is what returns the set of order_ids you want to check.
 
 2. **Deliverable**: 
-   - Within the python_homework folder, create an `assignment8` branch.
+   - Within the python_homework folder, create an `assignment8` branch.  Change to the `assignment8` folder.
    - Get the SQL statement working in sqlcommand.
-   - Within the python_homework directory, create `advanced_sql.py`. This opens the database, issues the SQL statement, prints out the result, and closes the database.
+   - Within the `assignment8` folder, create `advanced_sql.py`. This should open the database, issue the SQL statement, print out the result, and close the database.
    - test your program.
 
 ---

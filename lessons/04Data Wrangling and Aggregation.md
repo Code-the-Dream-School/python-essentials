@@ -149,6 +149,17 @@ print(result)
 `mean()` calculates the average value for each category.
 `count()` counts the number of non-null entries for each category
 
+Note: For a given agg() invocation on a column, you can specify one or several aggregation functions:
+
+```python
+result1 = df.groupby('Category').agg({'Values': 'sum'})
+# or
+result2 = df.groupby('Category').agg({'Values': ['sum', 'mean', 'count']})
+```
+If you print out result1 and result2, you'll see that they look different.  The result2 DataFrame has column headers with several rows, because 3 columns are needed for Values aggregation, one for some, one for mean, and one for count.  The column names in this case are tuples, such as `("Values","sum").
+
+In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
+
 ## **4.4 Merging and Joining**
 
 ### **Overview**
