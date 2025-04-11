@@ -2,30 +2,31 @@
 
 ## **Assignment Instructions**
 
-You create the code for this assignment in your python_homework folder.  Be sure to create an `assignment10` git branch before you start.  As usual, mark the code that completes each task with a comment line.
+You create the code for this assignment in your python_homework/assignment10 folder.  Be sure to create an `assignment10` git branch before you start.  As usual, mark the code that completes each task with a comment line.
 
 ---
 
 ---
 
 ## **Task 1: Storing Data in JSON**
-1. Write a script called `store_page.py` to scrape data from another Wikipedia page of your choice.
-2. Save the scraped data (title, headers, and links) into a JSON file called page.json.
+1. Within your assignment10 folder, Write a script called `store_page_to_json.py` to scrape data from another Wikipedia page of your choice.
+2. The script should save the scraped data (title, headers, and links) into a JSON file called page.json.
 3. Open the JSON file and verify its contents.
 
 ---
 
 ## **Task 2: Storing Data in CSV**
-1. Modify the script to include additional data (e.g., image sources).
-2. Save the new data to a CSV file called page.csv.
+1. Within your assignment10 folder, write a script called `store_page_to_csv.py`.
+2. The script shouldModify the script to include additional data (e.g., image sources).
+2. Save the new data to a CSV file within the assignment10 folder called page.csv.
 3. Test your script and verify the output.
 
 ---
 
 ## **Task 3: Storing Data in Databases**
-1. Create a script called `page_to_db.py`. This should create a new SQLite database, with a table for storing scraped data from a different page.  Create the database within the db directory of your python_homework folder.
-2. Insert the data into the table using Python.
-3. Retrieve and print the data from the database.  Redirect the output to a file, `page_db.txt` so that it is submitted with your homework.
+1. Create a script called `page_to_db.py`. This should create a new SQLite database called `page.db`, with a table for storing scraped data from a different page.  Create the database within the db directory of your python_homework folder.
+2. The script should write the data from the CSV file into the database.
+3. Retrieve and print the data from the database.  Redirect the output to a file, `page_db.txt` so that it is submitted with your homework.  Note: Your database is not submitted with 
 
 ---
 
@@ -54,7 +55,7 @@ You create the code for this assignment in your python_homework folder.  Be sure
 📌 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Add, Commit, and Push Your Changes**  
-- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment9` branch.
+- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment10` branch.
 - Push that branch to GitHub. 
 
 #### **2️⃣ Create a Pull Request**  
