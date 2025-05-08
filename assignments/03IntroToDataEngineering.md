@@ -6,7 +6,7 @@ In this assignment, you will explore the basic functionalities of the Pandas lib
 
 ### **Step 1: Complete the Coding Tasks**  
 
-Homework for this assignment is created within your `python_homework` folder.  Create an `assignment3` branch and checnge to the `assignment3` folder.  Write your code in `assignment3.py`.  As with the previous lessons, you will run unit tests on the assignment `pytest -v -x assignment3-test.py`.
+Homework for this assignment is created within your `python_homework` folder.  Create an `assignment3` branch and change to the `assignment3` folder.  Write your code in `assignment3.py`.  As with the previous lessons, you will run unit tests on the assignment `pytest -v -x assignment3-test.py`.
 
 ---
 
