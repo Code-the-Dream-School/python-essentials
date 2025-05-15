@@ -2,11 +2,7 @@
 # **Lesson 12 — More Python Skills**
 
 ## **Lesson Overview**
-**Learning objective:** In this lesson, students learn several key Python topics not covered in the Python introduction.  These include:
-- decorators
-- list comprehensions
-- closures
-- declaring custom classes
+**Learning objective:** In this lesson, students will learn and apply key advanced Python concepts including decorators, list comprehensions, closures, and custom class definitions. They will learn how to write cleaner, more modular code using these features and gain insight into how such patterns are used in real-world frameworks like Dash.
 
 ### **Topics:**
 1. Decorators

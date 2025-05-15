@@ -2,15 +2,16 @@
 # **Lesson 04 — Data Wrangling and Aggregation**
 
 ## **Lesson Overview**
-**Learning objective:** Students will learn how to efficiently select, aggregate, and combine data in Pandas to enable deeper insights and streamlined analysis.
+**Learning objective:** Students will learn to manipulate, summarize, and combine datasets in Pandas using selection, aggregation, merging, and transformation methods. They will practice accessing specific data, performing group-level calculations, and combining data from multiple sources.
+
 
 ### **Topics:**
-1. Data Selection: Indexing and slicing DataFrames.
-2. Data Aggregation: Grouping data using `groupby()` and aggregation functions like `sum()`, `mean()`, `count()`.
-3. Merging and Joining: Combining multiple DataFrames with `merge()` and `join()`.
-4. Data Transformation: How to modify an existing DataFrame.
-5. Some useful utility methods.
-
+1. Pandas Review (Optional): Recap of Series, DataFrames, and key methods from Lesson 3.
+2. Data Selection: Selecting subsets with `.loc[]`, `.iloc[]`, `.at[]`, and `.iat[]`; filtering rows by conditions; applying string methods.
+3. Data Aggregation: Grouping data with `groupby()`; applying functions like `sum()`, `mean()`, and `count()`; using `agg()` for multiple aggregations.
+4. Merging and Joining: Combining DataFrames with `merge()` and `join()`; inner, outer, left, and right joins; joining on one or multiple keys.
+5. Data Transformation: Adding, updating, and deleting columns; using operators, Series methods, `map()`, and NumPy functions for transformation.
+6. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
 ---
 
 ## **4.1 Pandas Review & Deep Dive** *(Optional)*

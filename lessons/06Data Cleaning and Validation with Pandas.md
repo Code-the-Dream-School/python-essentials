@@ -2,19 +2,20 @@
 # **Lesson 06 — Data Cleaning and Validation with Pandas**
 
 ## **Lesson Overview**
-**Learning objective:** Students will learn to apply fundamental data cleaning and validation techniques using Pandas. These include handling missing data, transforming data types, removing duplicates, managing outliers, standardizing text data, and validating data ranges.
+**Learning objective:** Students will learn to clean and standardize real-world datasets using Pandas. They will handle missing data, outliers, duplicates, inconsistent formatting, and categorical variables, while also applying transformations and basic feature engineering techniques to prepare data for analysis or modeling.
+
 
 ### **Topics:**
-1. Handling Missing Data
-2. Data Transformation
-3. Using Regular Expressions
-4. Removing Duplicates
-5. Handling Outliers
-6. Standardizing Data
-7. Validating Data Ranges
-8. Handling Categorical Data
-9. Handling Inconsistent Data
-10. Feature Engineering
+1. **Handling Missing Data**: Using `dropna()` and `fillna()` to manage null values.
+2. **Data Transformation**: Changing data types and formatting dates for analysis.
+3. **Using Regular Expressions**: Using regex with `str.replace()`, `extract()`, and `contains()` in Pandas.
+4. **Removing Duplicates**: Identifying and removing repeated rows with `drop_duplicates()`.
+5. **Handling Outliers**: Replacing extreme values with statistical measures like the median.
+6. **Standardizing Data**: Lowercasing, trimming whitespace, and mapping values for consistency.
+7. **Validating Data Ranges**: Ensuring numeric values fall within expected bounds.
+8. **Handling Categorical Data**: Encoding categories with label encoding and one-hot encoding using `get_dummies()`.
+9. **Handling Inconsistent Data**: Using regex and string methods to normalize inconsistent entries.
+10. **Feature Engineering**: Binning continuous variables into categories with `pd.cut()`.
 
 ---
 

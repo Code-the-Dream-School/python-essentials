@@ -2,8 +2,20 @@
 # **Lesson 07 — Introduction to Databases and SQL**
 
 ## **Lesson Overview**
+**Learning objective**: Students will gain foundational knowledge of SQL databases using Python and SQLite. They will define relational schemas, insert and query data using SQL, handle many-to-many relationships, and interact with databases directly from Pandas for analysis and reporting.
 
-**Learning objective:** Students will gain foundational knowledge of databases and SQL by learning to create, populate, and query a SQLite database using Python. They will also understand how to manage database connections, commit changes, and use advanced SQL techniques.  They will also access the database using Pandas.
+**Topics**:
+1. Introduction to SQL: What SQL is, why relational databases matter, and how constraints, associations, and transactions work.
+2. SQLite Setup: Installing dependencies (Windows only) and connecting to a local SQLite database.
+3. Defining Tables: Creating tables with `CREATE TABLE` statements and specifying primary keys, foreign keys, and constraints.
+4. Populating Tables: Using `INSERT INTO`and parameterized queries to add data to tables.
+5. Querying Data: Writing `SELECT` queries, using `WHERE`, `ORDER BY`, and comparison operators.
+6. Foreign Keys and Relationships: Creating and managing associations using `JOIN` tables.
+7. Joins and Complex Queries: Writing multi-table joins with `JOIN`, `LEFT JOIN`, and `AS` aliases.
+8. Modifying Data: Updating and deleting records using `UPDATE` and `DELETE` statements.
+9. SQL Practice: Practicing queries using the `sqlcommand.py` interface and exploring a sample dataset.
+10. Using SQL with Pandas: Loading SQL query results directly into Pandas DataFrames using `pd.read_sql_query()`.
+11. (Optional) Additional Practice: Guided practice via the SQLBolt tutorial.
 
 ## **Setup**
 

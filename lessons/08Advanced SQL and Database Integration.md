@@ -1,8 +1,19 @@
-
 # **Lesson 08 — Advanced SQL and Database Integration**
 
 ## **Lesson Overview**
 **Learning objective:** Students will deepen their understanding of SQL by learning advanced techniques such as subqueries, complex `JOIN`s, aggregation with functions, and using `HAVING` for conditional filtering. This lesson also introduces performance optimization techniques, transactions, parameterized queries, window functions, and more.
+
+**Topics:**
+1. Subqueries: Embedding queries within other SQL statements for dynamic filtering or calculations.
+2. Complex JOINs: Using INNER and LEFT JOINs across multiple related tables.
+3. Aggregation Functions: Using `MIN()`, `MAX()`, `AVG()`, `COUNT()` with `GROUP BY`.
+4. Aggregation with HAVING: Filtering grouped results using `HAVING` after aggregation.
+5. Performance Optimization: Creating indexes to speed up frequent queries.
+6. Transactions and Rollbacks: Ensuring consistency with `BEGIN`, `COMMIT`, and `ROLLBACK`.
+7. Parameterized Queries: Preventing SQL injection using safe input handling with placeholders.
+8. Window Functions: Applying `RANK()`, `ROW_NUMBER()`, and `OVER()` for row-level analytics.
+9. Date and Time Functions: Calculating durations and extracting date components using `JULIANDAY()` and related functions.
+10. Python Integration: Writing and executing SQL queries within Python scripts using `sqlite3`.
 
 ---
 

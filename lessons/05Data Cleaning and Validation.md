@@ -3,13 +3,14 @@
 
 **Lesson Overview**
 
-**Learning objective:** Students will learn techniques for presenting data, transforming DataFrames, handling missing data, transforming data types, and identifying and removing duplicate records to ensure data quality. This lesson will provide foundational skills necessary for cleaning raw data, ensuring it's ready for effective analysis.  Data cleaning is a key area for data analysts and engineers.  You have already done some data cleaning in assignment 3, and data cleaning will be covered in lesson 6 in more depth, so as to introduce various data cleaning techniques and show how they may be combined.
+**Learning objective:** Students will learn essential data cleaning and transformation techniques in Pandas, including handling missing values, outliers, and duplicates. They will also use pivot tables, the `apply()` method, and column-wise operations to reshape and enrich datasets.
+
 
 ### Topics
 
 1. **Pivot Tables**: A way to present summary data.
 2. **Transforming DataFrames with apply()**: A flexible way to create new columns by combining column entries from existing columns.
-3. **What is Data Cleaning?**: An introduction to the concepts of data cleaning. 
+3. **Intro to Data Cleaning**: Identifying dirty data; understanding standardization, outliers, deduplication, and validation. 
 4. **Handling Missing Data**: Removing rows with `dropna()`, replacing values with `fillna()`. 
 5. **Data Transformation**: Converting data types, reformatting dates, **feature engineering**, **data discretization**. 
 6. **Removing Duplicates**: Identifying and removing duplicate records.

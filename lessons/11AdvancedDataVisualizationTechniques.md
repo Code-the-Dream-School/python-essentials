@@ -2,7 +2,7 @@
 # **Lesson 11 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
-**Learning objective:** In this lesson, students will learn how to create advanced and interactive visualizations using Python libraries like Pandas, Plotly, and Dash. By the end of this lesson, students will understand how to visualize data directly from DataFrames, create interactive plots, and build simple dashboards for real-time data exploration.  This lesson and assignment are to be done in a student-created repository, and not in `python_homework`.  Students will need to create their own repositories for the final project, so this lesson/assignment provides practice in this.  Finally, students may also do an optional lesson and assignment introducing the Streamlit package.  Streamlit is an alternative to Dash
+**Learning objective:** students will learn how to build advanced, interactive visualizations using Python libraries such as Pandas, Plotly, and Dash. They will practice visualizing data from DataFrames, creating interactive charts, and developing simple dashboards for real-time data exploration. To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`. An optional section introduces Streamlit as an alternative to Dash for dashboard development.
 
 ### **Topics:**
 1. Plotting with Pandas: Visualizing data directly from DataFrames.
