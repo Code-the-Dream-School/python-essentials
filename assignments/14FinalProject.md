@@ -92,5 +92,8 @@ Students will scrape data from the **[Major League Baseball History Site](https:
 ---
 
 ## **Submission Instructions:**
-1. **Submit the Link**: Submit the link to your GitHub repository with all code files, data files, and the **README.md**.
-2. **Final Project Presentation**: Provide a brief explanation of your dashboard functionality and insights during the presentation. Presentations will be recorded.
+When you are ready to submit your Kaggle and Webscraping projects, use the [link for the final project submission form](https://airtable.com/appoSRJMlXH9KvE6w/shrthD4fozy4UI21I?prefill_Lessons=Python%20100%20v1:%20Lesson%2015%20-%20Project%20Completion%20and%20Presentations).
+
+1. **Submit the Github Link**: Submit the link to your GitHub repository with all code files, data files, and the **README.md**.
+2. **Final Project Presentation**: Provide a brief explanation of your dashboard functionality and insights during the presentation. Submit your video link in the form.
+

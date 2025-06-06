@@ -173,3 +173,6 @@ You can record your presentation in any of these three ways:
     * [ ]  All dependencies are clearly specified.
 
 </details>
+</br>
+
+Use this [link for the final project submission form](https://airtable.com/appoSRJMlXH9KvE6w/shrthD4fozy4UI21I?prefill_Lessons=Python%20100%20v1:%20Lesson%2015%20-%20Project%20Completion%20and%20Presentations) for your Kaggle, Web scraping, and presentation video.
